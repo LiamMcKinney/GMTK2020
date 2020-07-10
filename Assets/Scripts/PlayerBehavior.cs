@@ -47,7 +47,7 @@ public class PlayerBehavior : MonoBehaviour
         playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
         if (GameInputManager.GetKey("Attack"))
         {
-            Collider2D coll = Physics2D.OverlapPoint(new Vector3(1, 1, 0) + transform.position);
+            Collider2D coll = Physics2D.OverlapPoint(new Vector3(playerFacing.x, playerFacing.y, 0) + transform.position);
             if(coll != null && coll.GetComponent<Interactable>() != null)
             {
                 coll.GetComponent<Interactable>().OnHit();
