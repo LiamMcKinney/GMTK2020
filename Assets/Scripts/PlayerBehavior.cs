@@ -12,6 +12,7 @@ public class PlayerBehavior : MonoBehaviour
     float movementRight = 0;
     float movementLeft = 0;
     Vector2 playerFacing;
+    int attackCounter;
     // Start is called before the first frame update
     void Start()
     {
@@ -57,14 +58,19 @@ public class PlayerBehavior : MonoBehaviour
         attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
         if (GameInputManager.GetKeyDown("Attack"))
         {
+            attackCounter = 5;
+        }
+        if (attackCounter > 0)
+        {
             List<Collider2D> targets = attackBox.Collisions();
             foreach (Collider2D coll in targets)
             {
-                if(coll.GetComponent<Interactable>() != null)
+                if (coll.GetComponent<Interactable>() != null)
                 {
                     coll.GetComponent<Interactable>().OnHit();
                 }
             }
         }
+        attackCounter--;
     }
 }
