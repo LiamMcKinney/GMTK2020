@@ -50,4 +50,9 @@ public static class GameInputManager
     {
         return Input.GetKeyDown(keyMapping[keyMap]);
     }
+
+    public static bool GetKey(string keyMap)
+    {
+        return Input.GetKey(keyMapping[keyMap]);
+    }
 }
