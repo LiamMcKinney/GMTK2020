@@ -17,4 +17,8 @@ public abstract class Interactable : MonoBehaviour
     }
 
     public abstract void OnHit();
+    public abstract void OnHardRepair();
+    public abstract void OnSoftRepair();
+    public abstract void OnBomb();
+    public abstract void OnBow();
 }

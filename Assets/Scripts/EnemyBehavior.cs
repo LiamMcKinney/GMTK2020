@@ -20,4 +20,24 @@ public class EnemyBehavior : Interactable
     {
         Destroy(gameObject);
     }
+    
+    public override void OnSoftRepair()
+    {
+
+    }
+
+    public override void OnHardRepair()
+    {
+
+    }
+
+    public override void OnBomb()
+    {
+
+    }
+
+    public override void OnBow()
+    {
+
+    }
 }
