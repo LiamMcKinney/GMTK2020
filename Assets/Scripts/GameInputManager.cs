@@ -10,8 +10,8 @@ public static class GameInputManager
     {
         "Attack",
         "Block",
-        "Forward",
-        "Backward",
+        "Up",
+        "Down",
         "Left",
         "Right"
     };
