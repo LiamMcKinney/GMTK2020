@@ -13,7 +13,7 @@ public class EnemyBehavior : Interactable
     // Update is called once per frame
     void Update()
     {
-        
+        //GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), )
     }
 
     public override void OnHit()

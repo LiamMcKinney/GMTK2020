@@ -48,11 +48,19 @@ public static class GameInputManager
 
     public static bool GetKeyDown(string keyMap)
     {
+        if(keyMapping[keyMap] == null)
+        {
+            return false;
+        }
         return Input.GetKeyDown(keyMapping[keyMap]);
     }
 
     public static bool GetKey(string keyMap)
     {
+        if (keyMapping[keyMap] == null)
+        {
+            return false;
+        }
         return Input.GetKey(keyMapping[keyMap]);
     }
 }
