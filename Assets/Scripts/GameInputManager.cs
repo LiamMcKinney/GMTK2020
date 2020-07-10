@@ -13,7 +13,11 @@ public static class GameInputManager
         "Up",
         "Down",
         "Left",
-        "Right"
+        "Right",
+        "SoftRepairTool",
+        "HardRepairTool",
+        "Bow",
+        "Bomb"
     };
     static KeyCode[] defaults = new KeyCode[6]
     {
@@ -22,7 +26,11 @@ public static class GameInputManager
         KeyCode.W,
         KeyCode.S,
         KeyCode.A,
-        KeyCode.D
+        KeyCode.D,
+        KeyCode.None,
+        KeyCode.None,
+        KeyCode.None,
+        KeyCode.None
     };
 
     static GameInputManager()
