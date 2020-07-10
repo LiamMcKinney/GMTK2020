@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    public AttackHitbox attackBox;
+    public float attackBoxOffsetMultiplier;
     public float speed;
     float movementUp = 0;
     float movementDown = 0;
@@ -17,6 +19,10 @@ public class PlayerBehavior : MonoBehaviour
         if (speed == 0f)
         {
             speed = 0.015f;
+        }
+        if(attackBoxOffsetMultiplier == 0f)
+        {
+            attackBoxOffsetMultiplier = 5f;
         }
     }
 
@@ -44,13 +50,20 @@ public class PlayerBehavior : MonoBehaviour
             movementRight = speed;
         }
         transform.position = new Vector3(movementRight - movementLeft, movementUp - movementDown, 0) + transform.position;
-        playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
-        if (GameInputManager.GetKey("Attack"))
+        if (movementRight - movementLeft != 0 || movementUp - movementDown != 0)
         {
-            Collider2D coll = Physics2D.OverlapPoint(new Vector3(playerFacing.x, playerFacing.y, 0) + transform.position);
-            if(coll != null && coll.GetComponent<Interactable>() != null)
+            playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
+        }
+        attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
+        if (GameInputManager.GetKeyDown("Attack"))
+        {
+            List<Collider2D> targets = attackBox.Collisions();
+            foreach (Collider2D coll in targets)
             {
-                coll.GetComponent<Interactable>().OnHit();
+                if(coll.GetComponent<Interactable>() != null)
+                {
+                    coll.GetComponent<Interactable>().OnHit();
+                }
             }
         }
     }
