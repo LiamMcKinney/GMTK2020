@@ -48,7 +48,7 @@ public static class GameInputManager
 
     public static bool GetKeyDown(string keyMap)
     {
-        if(keyMapping[keyMap] == null)
+        if(keyMapping[keyMap] == KeyCode.None)
         {
             return false;
         }
@@ -57,7 +57,7 @@ public static class GameInputManager
 
     public static bool GetKey(string keyMap)
     {
-        if (keyMapping[keyMap] == null)
+        if (keyMapping[keyMap] == KeyCode.None)
         {
             return false;
         }
