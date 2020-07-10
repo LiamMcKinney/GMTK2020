@@ -6,7 +6,7 @@ using System;
 public static class GameInputManager
 {
     static Dictionary<string, KeyCode> keyMapping;
-    static string[] keyMaps = new string[6]
+    static string[] keyMaps = new string[10]
     {
         "Attack",
         "Block",
@@ -19,7 +19,7 @@ public static class GameInputManager
         "Bow",
         "Bomb"
     };
-    static KeyCode[] defaults = new KeyCode[6]
+    static KeyCode[] defaults = new KeyCode[10]
     {
         KeyCode.Q,
         KeyCode.E,
