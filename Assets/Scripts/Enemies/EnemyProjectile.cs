@@ -4,35 +4,18 @@ using UnityEngine;
 
 public class EnemyProjectile : MonoBehaviour
 {
-    public string direction;
-    public float speed;
     Collider2D hitbox;
+    public Vector3 direction;
     // Start is called before the first frame update
     void Start()
     {
-        //direction = "Down";
-        speed = 0.03f;
         hitbox = gameObject.GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (direction)
-        {
-            case "Up":
-                transform.position = new Vector3(0, speed, 0) + transform.position;
-                break;
-            case "Down":
-                transform.position = new Vector3(0, -speed, 0) + transform.position;
-                break;
-            case "Right":
-                transform.position = new Vector3(speed, 0, 0) + transform.position;
-                break;
-            case "Left":
-                transform.position = new Vector3(-speed, 0, 0) + transform.position;
-                break;
-        }
+        transform.position = transform.position + direction);
         List<Collider2D> temp = new List<Collider2D>();
         int t = hitbox.OverlapCollider(new ContactFilter2D(), temp);
         foreach (Collider2D coll in temp)

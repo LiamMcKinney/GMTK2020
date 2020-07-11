@@ -56,31 +56,7 @@ public class RangedEnemyBehavior : Enemy
         {
             EnemyProjectile shot = Instantiate(projectile).GetComponent<EnemyProjectile>();
             shot.Move(transform.position - new Vector3(xMotion*20, yMotion*20, 0));
-            float xDist = transform.position.x - target.x;
-            float yDist = transform.position.y - target.y;
-            float distRatio = yDist / xDist;
-            if(distRatio >= 1 || distRatio <= -1)
-            {
-                if (yMotion > 0)
-                {
-                    shot.direction = "Down";
-                }
-                else
-                {
-                    shot.direction = "Up";
-                }
-            }
-            else
-            {
-                if (xMotion > 0)
-                {
-                    shot.direction = "Left";
-                }
-                else
-                {
-                    shot.direction = "Right";
-                }
-            }
+            shot.direction = (target.transform.position - transform.position).normalised * .03;
             shootTimer = 300;
         }
     }
