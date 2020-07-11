@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 57747927}
   - component: {fileID: 57747926}
   - component: {fileID: 57747925}
+  - component: {fileID: 57747929}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -221,6 +222,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &57747929
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 57747924}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &175796866
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,8 +786,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1781248914}
   - component: {fileID: 1781248913}
-  - component: {fileID: 1781248912}
   - component: {fileID: 1781248915}
+  - component: {fileID: 1781248912}
   m_Layer: 0
   m_Name: testenemy
   m_TagString: Untagged
@@ -780,8 +807,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a536cbd9f1b8164a94fed70fd7e861f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0
   player: {fileID: 57747925}
+  attackHitbox: {fileID: 7428737197450172713, guid: bf448cd0c711df543993dd4aca0cd74b,
+    type: 3}
 --- !u!212 &1781248913
 SpriteRenderer:
   m_ObjectHideFlags: 0
