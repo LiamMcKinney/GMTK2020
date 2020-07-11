@@ -13,7 +13,8 @@ public class RoomEndButton : MonoBehaviour
     public InputUIManager controlManager;
 
     //the ideal camera location/size to overview the entire room.
-    public Vector3 camLocation;
+    public Vector3 bottomLeftCamLocation;
+    public Vector3 topRightCamLocation;
     public float camSize;
 
     // Start is called before the first frame update

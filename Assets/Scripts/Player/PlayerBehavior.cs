@@ -25,6 +25,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject projectile;
     public GameObject bomb;
     Rigidbody2D rb;
+    public bool isUsingPreview;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,10 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameInputManager.isConfiguringControls || isUsingPreview)
+        {
+            return;
+        }
         if (!isLookingAtRoom)
         {
             cam.targetPosition = transform.position + camOffset;
@@ -194,12 +200,12 @@ public class PlayerBehavior : MonoBehaviour
     public void LookAtRoom(RoomEndButton room)
     {
         isLookingAtRoom = true;
-        cam.ZoomToTarget(room.camLocation, room.camSize);
+        cam.ZoomToTarget(room.camLocation);
     }
 
     public void StopLookingAtRoom()
     {
         isLookingAtRoom = false;
-        cam.ZoomToTarget(transform.position, defaultCamSize);
+        cam.ZoomToTarget(transform.position);
     }
 }

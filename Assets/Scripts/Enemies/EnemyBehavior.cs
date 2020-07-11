@@ -9,12 +9,14 @@ public class MeleeEnemyBehavior : Interactable
     Collider2D attackBox;
     int attackCounter;
     public GameObject attackHitbox;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if(speed == 0)
         {
-            speed = .01f;
+            speed = 2f;
         }
         attackCounter = 500;
         attackBox = Instantiate(attackHitbox).GetComponent<Collider2D>();
@@ -43,7 +45,7 @@ public class MeleeEnemyBehavior : Interactable
         {
             yMotion = -speed;
         }
-        transform.position = new Vector3(xMotion, yMotion, 0) + oldPos;
+        rb.velocity = new Vector2(xMotion, yMotion);
         attackBox.GetComponent<EnemyAttackHitbox>().Move(transform.position);
         attackCounter--;
         if (attackCounter < 1)

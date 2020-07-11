@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomPreviewTile : MonoBehaviour
 {
     public RoomEndButton room;
+    bool inUse;
     // Start is called before the first frame update
     void Start()
     {

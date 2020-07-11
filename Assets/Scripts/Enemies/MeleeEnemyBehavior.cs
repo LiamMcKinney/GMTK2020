@@ -6,12 +6,14 @@ public class EnemyBehavior : Interactable
 {
     public float speed;
     public PlayerBehavior player;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if(speed == 0)
         {
-            speed = .01f;
+            speed = 2f;
         }
     }
 
@@ -38,7 +40,7 @@ public class EnemyBehavior : Interactable
         {
             yMotion = -speed;
         }
-        transform.position = new Vector3(xMotion, yMotion, 0) + oldPos;
+        rb.velocity = new Vector2(xMotion, yMotion);
     }
 
     public override void OnHit()
