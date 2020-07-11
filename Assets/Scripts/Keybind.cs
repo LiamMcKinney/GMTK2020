@@ -69,7 +69,9 @@ public class Keybind : MonoBehaviour
         }
         else
         {
-            transform.position = currentSlot.position;
+            //transform.position = currentSlot.position;
+            GetComponent<RectTransform>().position = currentSlot.GetComponent<RectTransform>().position;
+            //GetComponent<RectTransform>().anchorMax = currentSlot.GetComponent<RectTransform>().anchorMax;
         }
     }
 
