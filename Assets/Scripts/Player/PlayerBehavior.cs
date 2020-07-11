@@ -25,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject projectile;
     public GameObject bomb;
     Rigidbody2D rb;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -178,7 +179,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public void OnHit()
     {
-
+        health--;
+        cam.Shake();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
