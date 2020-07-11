@@ -9,7 +9,6 @@ public class PlayerBehavior : MonoBehaviour
     public Vector3 camOffset;
 
     public AttackHitbox attackBox;
-    public float attackBoxOffsetMultiplier;
     public float speed;
     float movementUp = 0;
     float movementDown = 0;
@@ -39,10 +38,6 @@ public class PlayerBehavior : MonoBehaviour
         if (speed == 0f)
         {
             speed = 0.015f;
-        }
-        if(attackBoxOffsetMultiplier == 0f)
-        {
-            attackBoxOffsetMultiplier = .025f;
         }
         hasHealed = false;
     }
