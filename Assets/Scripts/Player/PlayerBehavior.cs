@@ -231,7 +231,7 @@ public class PlayerBehavior : MonoBehaviour
         }else if(playerFacing.y < -Mathf.Abs(playerFacing.x))
         {
             return 2;
-        }else if(playerFacing.x > Mathf.Abs(playerFacing.y)){
+        }else if(playerFacing.x >= Mathf.Abs(playerFacing.y)){
             return 1;
         }
         else
