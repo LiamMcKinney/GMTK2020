@@ -33,10 +33,26 @@ SpriteAtlas:
     - {fileID: 454644792456902583, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
     - {fileID: -7392725051338725037, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
     - {fileID: 2800000, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
-    totalSpriteSurfaceArea: 230400
+    - {fileID: 2800000, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+    totalSpriteSurfaceArea: 234240
     bindAsDefault: 1
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: -2924988075109396515, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -3929008615707286480, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -5350010166879372382, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -4126189673005684853, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -7191427432549643332, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: 2795855954737372614, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: 6492586530365316700, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -8499833951466174584, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: 2504829664456194726, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -2698965408501596944, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: 3472400690369834541, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: 2443998471325027515, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -8270112867008342919, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -5599342844801184639, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
+  - {fileID: -8070945033023791111, guid: 89dd0c7420df89d419d373cf7b1651d8, type: 3}
   - {fileID: 8758000353482944892, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
   - {fileID: -8230655783522561438, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
   - {fileID: 3724863803574632660, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
@@ -54,6 +70,21 @@ SpriteAtlas:
   - {fileID: 145515095456382533, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
   - {fileID: 8630869551214103282, guid: c52c768af14d87e4eb5e586dc560cb2f, type: 3}
   m_PackedSpriteNamesToIndex:
+  - CompactTileset_12
+  - CompactTileset_13
+  - CompactTileset_10
+  - CompactTileset_11
+  - CompactTileset_14
+  - CompactTileset_7
+  - CompactTileset_6
+  - CompactTileset_5
+  - CompactTileset_4
+  - CompactTileset_3
+  - CompactTileset_2
+  - CompactTileset_1
+  - CompactTileset_0
+  - CompactTileset_9
+  - CompactTileset_8
   - Tilesets_3
   - Tilesets_2
   - Tilesets_5
