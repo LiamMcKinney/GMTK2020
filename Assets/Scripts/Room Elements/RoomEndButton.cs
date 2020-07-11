@@ -8,8 +8,13 @@ public class RoomEndButton : MonoBehaviour
     public List<Interactable> roomElements = new List<Interactable>();
 
     public List<RoomEntrance> entrances;
+    public List<Door> doors;
 
     public InputUIManager controlManager;
+
+    //the ideal camera location/size to overview the entire room.
+    public Vector3 camLocation;
+    public float camSize;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +28,12 @@ public class RoomEndButton : MonoBehaviour
         
     }
 
-    public void AttemptRoomClosure()
+    public void AttemptFinishRoom()
     {
         print("attempting close");
         if(enemies.Count == 0)
         {
-            CloseRoom();
+            CompleteRoom();
         }
         else
         {
@@ -36,12 +41,17 @@ public class RoomEndButton : MonoBehaviour
         }
     }
 
-    void CloseRoom()
+    void CompleteRoom()
     {
         print("closing");
         foreach(Interactable i in roomElements)
         {
             Destroy(i);
+        }
+
+        foreach(Door door in doors)
+        {
+            door.Open();
         }
 
         controlManager.UnlockControls();
@@ -53,6 +63,11 @@ public class RoomEndButton : MonoBehaviour
         foreach(RoomEntrance entrance in entrances)
         {
             entrance.Disable();
+        }
+
+        foreach(Door door in doors)
+        {
+            door.Close();
         }
     }
 }

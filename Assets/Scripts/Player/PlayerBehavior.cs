@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PlayerBehavior : MonoBehaviour
 {
+    public CameraManager cam;
+    public bool isLookingAtRoom;
+    public float defaultCamSize;
+    public Vector3 camOffset;
+
     public AttackHitbox attackBox;
     public float attackBoxOffsetMultiplier;
     public float speed;
@@ -38,6 +43,11 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isLookingAtRoom)
+        {
+            cam.targetPosition = transform.position + camOffset;
+        }
+
         movementUp = 0;
         movementDown = 0;
         movementRight = 0;
@@ -177,7 +187,19 @@ public class PlayerBehavior : MonoBehaviour
         if(collision.collider.GetComponent<RoomEndButton>() != null)
         {
             print("computer found");
-            collision.collider.GetComponent<RoomEndButton>().AttemptRoomClosure();
+            collision.collider.GetComponent<RoomEndButton>().AttemptFinishRoom();
         }
+    }
+
+    public void LookAtRoom(RoomEndButton room)
+    {
+        isLookingAtRoom = true;
+        cam.ZoomToTarget(room.camLocation, room.camSize);
+    }
+
+    public void StopLookingAtRoom()
+    {
+        isLookingAtRoom = false;
+        cam.ZoomToTarget(transform.position, defaultCamSize);
     }
 }
