@@ -27,6 +27,7 @@ public class PlayerBehavior : MonoBehaviour
     Rigidbody2D rb;
     public bool isUsingPreview;
 
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -184,7 +185,8 @@ public class PlayerBehavior : MonoBehaviour
 
     public void OnHit()
     {
-
+        health--;
+        cam.Shake();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -200,12 +202,12 @@ public class PlayerBehavior : MonoBehaviour
     public void LookAtRoom(RoomEndButton room)
     {
         isLookingAtRoom = true;
-        cam.ZoomToTarget(room.camLocation);
+        cam.ZoomToTarget(room.bottomLeftCamLocation, room.camSize);
     }
 
     public void StopLookingAtRoom()
     {
         isLookingAtRoom = false;
-        cam.ZoomToTarget(transform.position);
+        cam.ZoomToTarget(transform.position, defaultCamSize);
     }
 }
