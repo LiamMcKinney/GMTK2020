@@ -165,4 +165,14 @@ public class PlayerBehavior : MonoBehaviour
     {
 
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        print("collision entered");
+        if(collision.collider.GetComponent<RoomEndButton>() != null)
+        {
+            print("computer found");
+            collision.collider.GetComponent<RoomEndButton>().AttemptRoomClosure();
+        }
+    }
 }

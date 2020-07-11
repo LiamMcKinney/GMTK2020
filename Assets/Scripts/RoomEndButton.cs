@@ -18,4 +18,26 @@ public class RoomEndButton : MonoBehaviour
     {
         
     }
+
+    public void AttemptRoomClosure()
+    {
+        print("attempting close");
+        if(enemies.Count == 0)
+        {
+            CloseRoom();
+        }
+        else
+        {
+            
+        }
+    }
+
+    void CloseRoom()
+    {
+        print("closing");
+        foreach(Interactable i in roomElements)
+        {
+            Destroy(i);
+        }
+    }
 }
