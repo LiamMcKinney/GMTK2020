@@ -26,12 +26,26 @@ public class InputUIManager : MonoBehaviour
     {
         foreach(ControlSlot slot in slotPositions)
         {
-            slot.button.Disable();
+            if (slot.button != null)
+            {
+                slot.button.Disable();
+            }
         }
     }
 
     public void Hi(string hello)
     {
         print(hello);
+    }
+
+    public void UnlockControls()
+    {
+        foreach(ControlSlot slot in slotPositions)
+        {
+            if (slot.button != null)
+            {
+                slot.button.Enable();
+            }
+        }
     }
 }

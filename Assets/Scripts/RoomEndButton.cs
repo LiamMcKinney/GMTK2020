@@ -7,6 +7,10 @@ public class RoomEndButton : MonoBehaviour
     public List<Interactable> enemies = new List<Interactable>();
     public List<Interactable> roomElements = new List<Interactable>();
 
+    public List<RoomEntrance> entrances;
+
+    public InputUIManager controlManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,17 @@ public class RoomEndButton : MonoBehaviour
         foreach(Interactable i in roomElements)
         {
             Destroy(i);
+        }
+
+        controlManager.UnlockControls();
+    }
+
+    public void StartRoom()
+    {
+        controlManager.LockControls();
+        foreach(RoomEntrance entrance in entrances)
+        {
+            entrance.Disable();
         }
     }
 }

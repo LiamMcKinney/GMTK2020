@@ -10,7 +10,9 @@ public class Keybind : MonoBehaviour
     bool dragging;
     bool disabled;
 
+    public Color standardColor;
     public Color disabledColor;
+    public Color editingColor;
 
     bool isConfiguring;
     KeyCode newKey;
@@ -40,6 +42,7 @@ public class Keybind : MonoBehaviour
                     key = kcode;
                     keyText.text = kcode.ToString();
                     isConfiguring = false;
+                    GetComponent<Image>().color = standardColor;
                     GameInputManager.SetKeyMap(currentSlot.actionName, kcode);
                     GameInputManager.isConfiguringControls = false;
                     break;
@@ -95,6 +98,7 @@ public class Keybind : MonoBehaviour
         {
             isConfiguring = true;
             GameInputManager.isConfiguringControls = true;
+            GetComponent<Image>().color = editingColor;
         }
         else
         {
@@ -125,12 +129,13 @@ public class Keybind : MonoBehaviour
     public void Disable()
     {
         disabled = true;
+        dragging = false;
         GetComponent<Image>().color = disabledColor;
     }
 
     public void Enable()
     {
         disabled = false;
-        GetComponent<Image>().color = Color.white;
+        GetComponent<Image>().color = standardColor;
     }
 }
