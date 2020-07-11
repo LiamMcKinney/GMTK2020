@@ -156,6 +156,7 @@ MonoBehaviour:
   speed: 0
   projectile: {fileID: 8519833038307396311, guid: 4e0138ea0582d1e4483c3a3f86b7458d,
     type: 3}
+  bomb: {fileID: 4423977445102255888, guid: f7d581354b2f2d144b3d2ea0634c0d91, type: 3}
 --- !u!212 &57747926
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -62,6 +62,18 @@ public class PlayerBehavior : MonoBehaviour
             playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
         }
         attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
+        CheckAttack();
+        CheckBow();
+        CheckBomb();
+        CheckTools();
+        bombCooldown--;
+        bowCounter--;
+        attackCooldown--;
+        attackCounter--;
+    }
+
+    void CheckAttack()
+    {
         if (GameInputManager.GetKeyDown("Attack"))
         {
             if (attackCooldown < 1)
@@ -70,7 +82,7 @@ public class PlayerBehavior : MonoBehaviour
                 attackCooldown = 5;
             }
         }
-        attackCooldown--;
+
         if (attackCounter > 0)
         {
             List<Collider2D> targets = attackBox.Collisions();
@@ -82,7 +94,10 @@ public class PlayerBehavior : MonoBehaviour
                 }
             }
         }
-        attackCounter--;
+    }
+
+    void CheckBow()
+    {
         if (GameInputManager.GetKeyDown("Bow"))
         {
             if (bowCounter < 1)
@@ -107,7 +122,10 @@ public class PlayerBehavior : MonoBehaviour
                 bowCounter = 60;
             }
         }
-        bowCounter--;
+    }
+
+    void CheckBomb()
+    {
         if (GameInputManager.GetKeyDown("Bomb"))
         {
             if (bombCooldown < 1)
@@ -115,7 +133,9 @@ public class PlayerBehavior : MonoBehaviour
                 Instantiate(bomb);
             }
         }
-        bombCooldown--;
+    }
+    void CheckTools()
+    {
         if (GameInputManager.GetKey("SoftRepairTool"))
         {
             List<Collider2D> targets = attackBox.Collisions();
