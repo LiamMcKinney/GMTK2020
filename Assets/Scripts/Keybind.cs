@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ public class Keybind : MonoBehaviour
 {
     BoxCollider2D coll;
     bool dragging;
+
+    bool isConfiguring;
+    KeyCode newKey;
 
     public KeyCode key;
 
@@ -21,6 +25,23 @@ public class Keybind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        print(GameInputManager.isConfiguringControls);
+        if (isConfiguring)
+        {
+            foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
+            {
+                if (Input.GetKeyUp(kcode))
+                {
+                    key = kcode;
+                    isConfiguring = false;
+                    GameInputManager.SetKeyMap(currentSlot.actionName, kcode);
+                    GameInputManager.isConfiguringControls = false;
+                    break;
+                }
+            }
+            return;
+        }
+
         if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonDown(0))
         {
             dragging = true;
@@ -64,21 +85,27 @@ public class Keybind : MonoBehaviour
             }
         }
 
-        Keybind otherKey = closestSlot.button;
-
-        closestSlot.button = this;
-        currentSlot.button = otherKey;
-        if (otherKey != null)
+        if (closestSlot.actionName.Equals(currentSlot.actionName))
         {
-            otherKey.SetSlot(currentSlot);
+            isConfiguring = true;
+            GameInputManager.isConfiguringControls = true;
         }
         else
         {
-            GameInputManager.SetKeyMap(currentSlot.actionName, KeyCode.None);
+            Keybind otherKey = closestSlot.button;
+
+            closestSlot.button = this;
+            currentSlot.button = otherKey;
+            if (otherKey != null)
+            {
+                otherKey.SetSlot(currentSlot);
+            }
+            else
+            {
+                GameInputManager.SetKeyMap(currentSlot.actionName, KeyCode.None);
+            }
+            SetSlot(closestSlot);
         }
-        SetSlot(closestSlot);
-
-
     }
 
     public void SetSlot(ControlSlot slot)

@@ -33,6 +33,8 @@ public static class GameInputManager
         KeyCode.None
     };
 
+    public static bool isConfiguringControls;
+
     static GameInputManager()
     {
         InitializeDictionary();
