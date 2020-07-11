@@ -8,6 +8,7 @@ public class RangedEnemyBehavior : Interactable
     public PlayerBehavior player;
     int shootTimer;
     public GameObject projectile;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,10 @@ public class RangedEnemyBehavior : Interactable
             speed = .01f;
         }
         shootTimer = 500;
+        if(health == 0)
+        {
+            health = 3;
+        }
     }
 
     // Update is called once per frame
@@ -78,7 +83,8 @@ public class RangedEnemyBehavior : Interactable
 
     public override void OnHit()
     {
-        Destroy(gameObject);
+        health -= 2;
+        CheckHealth();
     }
 
     public override void OnSoftRepair() { }
@@ -87,11 +93,21 @@ public class RangedEnemyBehavior : Interactable
 
     public override void OnBomb()
     {
-        Destroy(gameObject);
+        health -= 3;
+        CheckHealth();
     }
 
     public override void OnBow()
     {
-        Destroy(gameObject);
+        health--;
+        CheckHealth();
+    }
+
+    void CheckHealth()
+    {
+        if (health < 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }

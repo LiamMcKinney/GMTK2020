@@ -10,6 +10,7 @@ public class MeleeEnemyBehavior : Interactable
     int attackCounter;
     public GameObject attackHitbox;
     Rigidbody2D rb;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +21,10 @@ public class MeleeEnemyBehavior : Interactable
         }
         attackCounter = 500;
         attackBox = Instantiate(attackHitbox).GetComponent<Collider2D>();
+        if(health == 0)
+        {
+            health = 5;
+        }
     }
 
     // Update is called once per frame
@@ -56,7 +61,8 @@ public class MeleeEnemyBehavior : Interactable
 
     public override void OnHit()
     {
-        Destroy(gameObject);
+        health -= 2;
+        CheckHealth();
     }
 
     public override void OnSoftRepair() { }
@@ -65,12 +71,14 @@ public class MeleeEnemyBehavior : Interactable
 
     public override void OnBomb()
     {
-        Destroy(gameObject);
+        health -= 5;
+        CheckHealth();
     }
 
     public override void OnBow()
     {
-        Destroy(gameObject);
+        health--;
+        CheckHealth();
     }
     
     public List<Collider2D> Collisions()
@@ -88,6 +96,14 @@ public class MeleeEnemyBehavior : Interactable
                 coll.GetComponent<PlayerBehavior>().OnHit();
                 attackCounter = 200;
             }
+        }
+    }
+
+    void CheckHealth()
+    {
+        if(health < 1)
+        {
+            Destroy(gameObject);
         }
     }
 }
