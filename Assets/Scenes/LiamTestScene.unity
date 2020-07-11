@@ -1141,7 +1141,9 @@ MonoBehaviour:
   attackBox: {fileID: 100596660}
   attackBoxOffsetMultiplier: 0
   speed: 0.015
-  projectile: {fileID: 0}
+  projectile: {fileID: 8519833038307396311, guid: 4e0138ea0582d1e4483c3a3f86b7458d,
+    type: 3}
+  bomb: {fileID: 4423977445102255888, guid: f7d581354b2f2d144b3d2ea0634c0d91, type: 3}
 --- !u!212 &876047459
 SpriteRenderer:
   m_ObjectHideFlags: 0
