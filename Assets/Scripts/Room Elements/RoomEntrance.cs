@@ -15,6 +15,7 @@ public class RoomEntrance : MonoBehaviour
         if(!disabled && collision.GetComponent<PlayerBehavior>() != null)
         {
             centralComputer.StartRoom();
+            collision.GetComponent<PlayerBehavior>().hasHealed = false;
         }
     }
 

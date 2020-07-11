@@ -26,6 +26,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject bomb;
     Rigidbody2D rb;
     public bool isUsingPreview;
+    public bool hasHealed;
 
     public int health;
     // Start is called before the first frame update
@@ -41,6 +42,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             attackBoxOffsetMultiplier = .025f;
         }
+        hasHealed = false;
     }
 
     // Update is called once per frame
@@ -89,6 +91,11 @@ public class PlayerBehavior : MonoBehaviour
         bowCounter--;
         attackCooldown--;
         attackCounter--;
+        if (GameInputManager.GetKey("Block") && !hasHealed)
+        {
+            health++;
+            hasHealed = true;
+        }
     }
 
     void CheckAttack()
