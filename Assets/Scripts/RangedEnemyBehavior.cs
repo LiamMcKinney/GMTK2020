@@ -47,18 +47,10 @@ public class RangedEnemyBehavior : Interactable
         {
             EnemyProjectile shot = Instantiate(projectile).GetComponent<EnemyProjectile>();
             shot.Move(transform.position - new Vector3(xMotion*20, yMotion*20, 0));
-            if(xMotion * xMotion > yMotion * yMotion)
-            {
-                if (xMotion > 0)
-                {
-                    shot.direction = "Left";
-                }
-                else
-                {
-                    shot.direction = "Right";
-                }
-            }
-            else
+            float xDist = transform.position.x - target.x;
+            float yDist = transform.position.y - target.y;
+            float distRatio = yDist / xDist;
+            if(distRatio >= 1 || distRatio <= -1)
             {
                 if (yMotion > 0)
                 {
@@ -67,6 +59,17 @@ public class RangedEnemyBehavior : Interactable
                 else
                 {
                     shot.direction = "Up";
+                }
+            }
+            else
+            {
+                if (xMotion > 0)
+                {
+                    shot.direction = "Left";
+                }
+                else
+                {
+                    shot.direction = "Right";
                 }
             }
             shootTimer = 300;
