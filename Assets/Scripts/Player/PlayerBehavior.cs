@@ -86,7 +86,21 @@ public class PlayerBehavior : MonoBehaviour
         {
             animator.SetBool("Moving", false);
         }
-        attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
+        switch (GetFacingDirection())
+        {
+            case 0:
+                attackBox.Move(new Vector3(0, 0.8f, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                break;
+            case 1:
+                attackBox.Move(new Vector3(0.8f, 0, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                break;
+            case 2:
+                attackBox.Move(new Vector3(0, -0.8f, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                break;
+            case 3:
+                attackBox.Move(new Vector3(-0.8f, 0, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                break;
+        }
         CheckAttack();
         CheckBow();
         CheckBomb();
