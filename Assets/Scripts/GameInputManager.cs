@@ -21,15 +21,15 @@ public static class GameInputManager
     };
     static KeyCode[] defaults = new KeyCode[10]
     {
-        KeyCode.Q,
-        KeyCode.E,
+        KeyCode.Space,
+        KeyCode.None,
         KeyCode.W,
         KeyCode.S,
         KeyCode.A,
         KeyCode.D,
         KeyCode.None,
         KeyCode.None,
-        KeyCode.None,
+        KeyCode.LeftShift,
         KeyCode.None
     };
 
