@@ -24,6 +24,7 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject projectile;
     public GameObject bomb;
     Rigidbody2D rb;
+    public float bowKnockback;
 
     public Animator animator;
 
@@ -151,18 +152,22 @@ public class PlayerBehavior : MonoBehaviour
                 if (playerFacing.y > 0)
                 {
                     shot.direction = "Up";
+                    transform.position = transform.position + new Vector3(0, -bowKnockback, 0);
                 }
                 else if (playerFacing.x > 0)
                 {
                     shot.direction = "Right";
+                    transform.position = transform.position + new Vector3(-bowKnockback, 0, 0);
                 }
                 else if (playerFacing.y < 0)
                 {
                     shot.direction = "Down";
+                    transform.position = transform.position + new Vector3(0, bowKnockback, 0);
                 }
                 else if (playerFacing.x < 0)
                 {
                     shot.direction = "Left";
+                    transform.position = transform.position + new Vector3(bowKnockback, 0, 0);
                 }
                 bowCounter = 60;
             }
