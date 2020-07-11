@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : Interactable
+public class MeleeEnemyBehavior : Interactable
 {
     public float speed;
     public PlayerBehavior player;
+    Collider2D attackBox;
+    int attackCounter;
+    public GameObject attackHitbox;
     Rigidbody2D rb;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +18,12 @@ public class EnemyBehavior : Interactable
         if(speed == 0)
         {
             speed = 2f;
+        }
+        attackCounter = 500;
+        attackBox = Instantiate(attackHitbox).GetComponent<Collider2D>();
+        if(health == 0)
+        {
+            health = 5;
         }
     }
 
@@ -41,11 +51,18 @@ public class EnemyBehavior : Interactable
             yMotion = -speed;
         }
         rb.velocity = new Vector2(xMotion, yMotion);
+        attackBox.GetComponent<EnemyAttackHitbox>().Move(transform.position);
+        attackCounter--;
+        if (attackCounter < 1)
+        {
+            TryAttack();
+        }
     }
 
     public override void OnHit()
     {
-        Destroy(gameObject);
+        health -= 2;
+        CheckHealth();
     }
 
     public override void OnSoftRepair() { }
@@ -54,18 +71,39 @@ public class EnemyBehavior : Interactable
 
     public override void OnBomb()
     {
-        Destroy(gameObject);
+        health -= 5;
+        CheckHealth();
     }
 
     public override void OnBow()
     {
-        Destroy(gameObject);
+        health--;
+        CheckHealth();
     }
     
     public List<Collider2D> Collisions()
     {
         List<Collider2D> temp = new List<Collider2D>();
-        int t = gameObject.GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), temp);
+        int t = attackBox.OverlapCollider(new ContactFilter2D(), temp);
         return temp;
+    }
+
+    void TryAttack() {
+        foreach(Collider2D coll in Collisions())
+        {
+            if (coll.GetComponent<PlayerBehavior>() != null)
+            {
+                coll.GetComponent<PlayerBehavior>().OnHit();
+                attackCounter = 200;
+            }
+        }
+    }
+
+    void CheckHealth()
+    {
+        if(health < 1)
+        {
+            Destroy(gameObject);
+        }
     }
 }
