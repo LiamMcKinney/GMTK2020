@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class BrokenMachine : Interactable
 {
-    public bool repaired;
     // Start is called before the first frame update
     void Start()
     {
-        repaired = false;
+        isRepaired = false;
     }
 
     // Update is called once per frame
@@ -24,6 +23,6 @@ public class BrokenMachine : Interactable
 
     public override void OnHardRepair()
     {
-        repaired = true;
+        isRepaired = true;
     }
 }
