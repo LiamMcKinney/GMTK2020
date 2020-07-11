@@ -18,6 +18,7 @@ public class PlayerBehavior : MonoBehaviour
     int bombTimer;
     int bombCooldown;
     public GameObject projectile;
+    public GameObject bomb;
     // Start is called before the first frame update
     void Start()
     {
@@ -111,7 +112,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (bombCooldown < 1)
             {
-
+                Instantiate(bomb);
             }
         }
         bombCooldown--;
