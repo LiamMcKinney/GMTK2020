@@ -25,7 +25,14 @@ public class RoomEndButton : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach(Enemy enemy in enemies)
+        {
+            if(enemy == null)
+            {
+                enemies.Remove(enemy);
+                break;
+            }
+        }
     }
 
     public void AttemptFinishRoom()
