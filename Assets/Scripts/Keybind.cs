@@ -7,6 +7,8 @@ public class Keybind : MonoBehaviour
     BoxCollider2D coll;
     bool dragging;
 
+    public KeyCode key;
+
     public ControlSlot currentSlot;
 
     public InputUIManager manager;
@@ -68,8 +70,16 @@ public class Keybind : MonoBehaviour
         currentSlot.button = otherKey;
         if (otherKey != null)
         {
-            otherKey.currentSlot = currentSlot;
+            otherKey.SetSlot(currentSlot);
         }
-        currentSlot = closestSlot;
+        SetSlot(closestSlot);
+
+
+    }
+
+    public void SetSlot(ControlSlot slot)
+    {
+        currentSlot = slot;
+        GameInputManager.SetKeyMap(slot.actionName, key);
     }
 }

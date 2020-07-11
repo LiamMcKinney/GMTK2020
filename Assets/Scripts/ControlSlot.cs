@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ControlSlot : MonoBehaviour
 {
-    public string name;
+    public string actionName;
     public Keybind button;
 
     public Vector3 position;
