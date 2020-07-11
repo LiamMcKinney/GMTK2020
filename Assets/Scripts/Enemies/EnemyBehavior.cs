@@ -51,7 +51,6 @@ public class MeleeEnemyBehavior : Interactable
         if (attackCounter < 1)
         {
             TryAttack();
-            attackCounter = 200;
         }
     }
 
@@ -87,6 +86,7 @@ public class MeleeEnemyBehavior : Interactable
             if (coll.GetComponent<PlayerBehavior>() != null)
             {
                 coll.GetComponent<PlayerBehavior>().OnHit();
+                attackCounter = 200;
             }
         }
     }
