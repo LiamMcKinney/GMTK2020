@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -23,10 +24,73 @@ public class FactoryTileScript : Tile
     // As the rotation is determined by the RoadTile, the TileFlags.OverrideTransform is set for the tile.
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
-        if (HasFloorTile(tilemap, location + Vector3Int.down))
+        if(HasFloorTile(tilemap, location + Vector3Int.down))
         {
             tileData.sprite = m_Sprites[0];
+            return;
         }
+
+        if(HasFloorOrBaseTile(tilemap, location + Vector3Int.down))
+        {
+            if (HasFloorOrBaseTile(tilemap, location + Vector3Int.left))
+            {
+                tileData.sprite = m_Sprites[1];
+                return;
+            }
+            else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.right))
+            {
+                tileData.sprite = m_Sprites[2];
+                return;
+            }
+            tileData.sprite = m_Sprites[3];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.up))
+        {
+            if (HasFloorOrBaseTile(tilemap, location + Vector3Int.left))
+            {
+                tileData.sprite = m_Sprites[4];
+                return;
+            }
+            else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.right))
+            {
+                tileData.sprite = m_Sprites[5];
+                return;
+            }
+            tileData.sprite = m_Sprites[6];
+            return;
+        }else if(HasFloorOrBaseTile(tilemap, location + Vector3Int.right))
+        {
+            tileData.sprite = m_Sprites[7];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.left))
+        {
+            tileData.sprite = m_Sprites[8];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.right + Vector3Int.up))
+        {
+            tileData.sprite = m_Sprites[9];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.right + Vector3Int.down))
+        {
+            tileData.sprite = m_Sprites[10];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.left + Vector3Int.down))
+        {
+            tileData.sprite = m_Sprites[11];
+            return;
+        }
+        else if (HasFloorOrBaseTile(tilemap, location + Vector3Int.left + Vector3Int.up))
+        {
+            tileData.sprite = m_Sprites[12];
+            return;
+        }
+            tileData.sprite = m_Sprites[13];
+            return;
         /*int mask = HasRoadTile(tilemap, location + new Vector3Int(0, 1, 0)) ? 1 : 0;
         mask += HasRoadTile(tilemap, location + new Vector3Int(1, 0, 0)) ? 2 : 0;
         mask += HasRoadTile(tilemap, location + new Vector3Int(0, -1, 0)) ? 4 : 0;
@@ -53,52 +117,29 @@ public class FactoryTileScript : Tile
         return tilemap.GetTile(position) == this;
     }
 
+    private bool HasFloorOrBaseTile(ITilemap tilemap, Vector3Int position)
+    {
+        if(tilemap.GetTile(position) == floorTile)
+        {
+            return true;
+        }
+        return tilemap.GetTile(position + Vector3Int.down) == floorTile;
+    }
+
     private bool HasFloorTile(ITilemap tilemap, Vector3Int position)
     {
         return tilemap.GetTile(position) == floorTile;
     }
-    // The following determines which sprite to use based on the number of adjacent RoadTiles
-    private int GetIndex(byte mask)
+
+#if UNITY_EDITOR
+    // The following is a helper that adds a menu item to create a RoadTile Asset
+    [MenuItem("Assets/Create/FactoryTileScript")]
+    public static void CreateRoadTile()
     {
-        switch (mask)
-        {
-            case 0: return 0;
-            case 3:
-            case 6:
-            case 9:
-            case 12: return 1;
-            case 1:
-            case 2:
-            case 4:
-            case 5:
-            case 10:
-            case 8: return 2;
-            case 7:
-            case 11:
-            case 13:
-            case 14: return 3;
-            case 15: return 4;
-        }
-        return -1;
+        string path = EditorUtility.SaveFilePanelInProject("Save Wall Tile", "New Wall Tile", "Asset", "Save Wall Tile", "Assets");
+        if (path == "")
+            return;
+        AssetDatabase.CreateAsset(ScriptableObject.CreateInstance<FactoryTileScript>(), path);
     }
-    // The following determines which rotation to use based on the positions of adjacent RoadTiles
-    private Quaternion GetRotation(byte mask)
-    {
-        switch (mask)
-        {
-            case 9:
-            case 10:
-            case 7:
-            case 2:
-            case 8:
-                return Quaternion.Euler(0f, 0f, -90f);
-            case 3:
-            case 14:
-                return Quaternion.Euler(0f, 0f, -180f);
-            case 6:
-            case 13:
-                return Quaternion.Euler(0f, 0f, -270f);
-        }
-        return Quaternion.Euler(0f, 0f, 0f);
-    }
+#endif
 }
