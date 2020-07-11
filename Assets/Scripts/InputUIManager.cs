@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class InputUIManager : MonoBehaviour
 {
-    public List<string> controlNames;
-    public List<InputField> controlBoxes;
+    //public List<string> controlNames;
+    //public List<InputField> controlBoxes;
+    public List<ControlSlot> slotPositions;
 
     public int numControls;
     // Start is called before the first frame update
