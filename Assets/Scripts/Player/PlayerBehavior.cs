@@ -6,7 +6,6 @@ public class PlayerBehavior : MonoBehaviour
 {
     public CameraManager cam;
     public bool isLookingAtRoom;
-    public float defaultCamSize;
     public Vector3 camOffset;
 
     public AttackHitbox attackBox;
@@ -202,12 +201,13 @@ public class PlayerBehavior : MonoBehaviour
     public void LookAtRoom(RoomEndButton room)
     {
         isLookingAtRoom = true;
-        cam.ZoomToTarget(room.bottomLeftCamLocation, room.camSize);
+        rb.velocity = Vector2.zero;
+        cam.ZoomToTarget(room.bottomLeftCamLocation);
     }
 
     public void StopLookingAtRoom()
     {
         isLookingAtRoom = false;
-        cam.ZoomToTarget(transform.position, defaultCamSize);
+        cam.ZoomToTarget(transform.position);
     }
 }

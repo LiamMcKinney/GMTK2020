@@ -10,15 +10,12 @@ public class CameraManager : MonoBehaviour
     public Vector3 position;
 
     public Vector3 targetPosition;
-    float targetSize;
     bool isZooming;
 
     Camera cam;
 
     public float zoomMoveMultiplier;
-    public float zoomSizeMultiplier;
     public float minZoomChange;
-    public float minSizeChange;
 
     void Start()
     {
@@ -31,9 +28,8 @@ public class CameraManager : MonoBehaviour
         if (isZooming)
         {
             position = Vector3.MoveTowards(position, targetPosition, Mathf.Max(minZoomChange, zoomMoveMultiplier * (targetPosition - position).magnitude));
-            cam.orthographicSize = Mathf.MoveTowards(cam.orthographicSize, targetSize, Mathf.Max(minSizeChange, zoomSizeMultiplier * Mathf.Abs(cam.orthographicSize - targetSize)));
 
-            if(position == targetPosition && cam.orthographicSize == targetSize)
+            if(position == targetPosition)
             {
                 isZooming = false;
             }
@@ -73,10 +69,9 @@ public class CameraManager : MonoBehaviour
         Shaking = true;
     }
 
-    public void ZoomToTarget(Vector3 target, float viewSize)
+    public void ZoomToTarget(Vector3 target)
     {
         targetPosition = target;
-        targetSize = viewSize;
         isZooming = true;
     }
 }

@@ -25,7 +25,15 @@ public class MeleeEnemyBehavior : Interactable
     // Update is called once per frame
     void Update()
     {
-        Vector3 target = player.transform.position;
+        Vector3 target;
+        if (player == null)
+        {
+            target = transform.position;
+        }
+        else
+        {
+            target = player.transform.position;
+        }
         Vector3 oldPos = transform.position;
         float xMotion = 0;
         float yMotion = 0;
