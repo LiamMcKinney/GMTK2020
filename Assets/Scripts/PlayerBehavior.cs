@@ -131,7 +131,9 @@ public class PlayerBehavior : MonoBehaviour
         {
             if (bombCooldown < 1)
             {
-                Instantiate(bomb);
+                Bomb boom = Instantiate(bomb).GetComponent<Bomb>();
+                boom.Move(transform.position);
+                bombCooldown = 100;
             }
         }
     }

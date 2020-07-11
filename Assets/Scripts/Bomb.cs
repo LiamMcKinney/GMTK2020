@@ -30,4 +30,9 @@ public class Bomb : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void Move(Vector3 position)
+    {
+        transform.position = position;
+    }
 }
