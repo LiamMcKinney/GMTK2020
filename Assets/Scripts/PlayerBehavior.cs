@@ -13,6 +13,11 @@ public class PlayerBehavior : MonoBehaviour
     float movementLeft = 0;
     Vector2 playerFacing;
     int attackCounter;
+    int bowCounter;
+    int attackCooldown;
+    int bombTimer;
+    int bombCooldown;
+    public GameObject projectile;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,8 +63,13 @@ public class PlayerBehavior : MonoBehaviour
         attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
         if (GameInputManager.GetKeyDown("Attack"))
         {
-            attackCounter = 5;
+            if (attackCooldown < 1)
+            {
+                attackCounter = 5;
+                attackCooldown = 5;
+            }
         }
+        attackCooldown--;
         if (attackCounter > 0)
         {
             List<Collider2D> targets = attackBox.Collisions();
@@ -74,12 +84,37 @@ public class PlayerBehavior : MonoBehaviour
         attackCounter--;
         if (GameInputManager.GetKeyDown("Bow"))
         {
-
+            if (bowCounter < 1)
+            {
+                Projectile shot = Instantiate(projectile).GetComponent<Projectile>();
+                if (playerFacing.y > 0)
+                {
+                    shot.direction = "Up";
+                }
+                else if (playerFacing.x > 0)
+                {
+                    shot.direction = "Right";
+                }
+                else if (playerFacing.y < 0)
+                {
+                    shot.direction = "Down";
+                }
+                else if (playerFacing.x < 0)
+                {
+                    shot.direction = "Left";
+                }
+                bowCounter = 60;
+            }
         }
+        bowCounter--;
         if (GameInputManager.GetKeyDown("Bomb"))
         {
+            if (bombCooldown < 1)
+            {
 
+            }
         }
+        bombCooldown--;
         if (GameInputManager.GetKey("SoftRepairTool"))
         {
             List<Collider2D> targets = attackBox.Collisions();
