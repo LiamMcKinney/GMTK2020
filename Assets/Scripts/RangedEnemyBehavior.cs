@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemyBehavior : Interactable
+public class RangedEnemyBehavior : Interactable
 {
     public float speed;
     public PlayerBehavior player;
-    public Collider2D attackBox;
-    int attackCounter;
     // Start is called before the first frame update
     void Start()
     {
-        if(speed == 0)
+        if (speed == 0)
         {
             speed = .01f;
         }
-        attackCounter = 500;
     }
 
     // Update is called once per frame
@@ -27,27 +24,21 @@ public class MeleeEnemyBehavior : Interactable
         float yMotion = 0;
         if (target.x > oldPos.x)
         {
-            xMotion = speed;
+            xMotion = -speed;
         }
         else if (target.x < oldPos.x)
         {
-            xMotion = -speed;
+            xMotion = speed;
         }
         if (target.y > oldPos.y)
         {
-            yMotion = speed;
+            yMotion = -speed;
         }
         else if (target.y < oldPos.y)
         {
-            yMotion = -speed;
+            yMotion = speed;
         }
         transform.position = new Vector3(xMotion, yMotion, 0) + oldPos;
-        attackCounter--;
-        if (attackCounter < 1)
-        {
-            TryAttack();
-            attackCounter = 200;
-        }
     }
 
     public override void OnHit()
@@ -67,16 +58,5 @@ public class MeleeEnemyBehavior : Interactable
     public override void OnBow()
     {
         Destroy(gameObject);
-    }
-    
-    public List<Collider2D> Collisions()
-    {
-        List<Collider2D> temp = new List<Collider2D>();
-        int t = attackBox.OverlapCollider(new ContactFilter2D(), temp);
-        return temp;
-    }
-
-    void TryAttack() {
-
     }
 }

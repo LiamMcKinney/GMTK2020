@@ -160,4 +160,9 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
     }
+
+    public void OnHit()
+    {
+
+    }
 }
