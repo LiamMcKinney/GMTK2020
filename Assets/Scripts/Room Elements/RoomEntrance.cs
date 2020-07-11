@@ -14,7 +14,7 @@ public class RoomEntrance : MonoBehaviour
         print("something entered");
         if(!disabled && collision.GetComponent<PlayerBehavior>() != null)
         {
-            centralComputer.StartRoom();
+            centralComputer.StartRoom(collision.GetComponent<PlayerBehavior>());
             collision.GetComponent<PlayerBehavior>().hasHealed = false;
         }
     }

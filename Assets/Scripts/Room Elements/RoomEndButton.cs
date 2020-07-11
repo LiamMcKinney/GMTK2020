@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomEndButton : MonoBehaviour
 {
-    public List<Interactable> enemies = new List<Interactable>();
+    public List<Enemy> enemies = new List<Enemy>();
     public List<Interactable> roomElements = new List<Interactable>();
 
     public List<RoomEntrance> entrances;
@@ -57,9 +57,13 @@ public class RoomEndButton : MonoBehaviour
         controlManager.UnlockControls();
     }
 
-    public void StartRoom()
+    public void StartRoom(PlayerBehavior player)
     {
         controlManager.LockControls();
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.player = player;
+        }
         foreach(RoomEntrance entrance in entrances)
         {
             entrance.Disable();

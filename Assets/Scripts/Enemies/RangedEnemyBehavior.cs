@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RangedEnemyBehavior : Interactable
+public class RangedEnemyBehavior : Enemy
 {
     public float speed;
-    public PlayerBehavior player;
+    //public PlayerBehavior player;
     int shootTimer;
     public GameObject projectile;
     public int health;
@@ -26,6 +26,10 @@ public class RangedEnemyBehavior : Interactable
     // Update is called once per frame
     void Update()
     {
+        if(player == null)
+        {
+            return;
+        }
         Vector3 target = player.transform.position;
         Vector3 oldPos = transform.position;
         float xMotion = 0;

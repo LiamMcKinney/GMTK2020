@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemyBehavior : Interactable
+public class MeleeEnemyBehavior : Enemy
 {
     public float speed;
-    public PlayerBehavior player;
+    //public PlayerBehavior player;
     Collider2D attackBox;
     int attackCounter;
     public GameObject attackHitbox;
@@ -30,6 +30,10 @@ public class MeleeEnemyBehavior : Interactable
     // Update is called once per frame
     void Update()
     {
+        if(player == null)
+        {
+            return;
+        }
         Vector3 target = player.transform.position;
         Vector3 oldPos = transform.position;
         float xMotion = 0;
@@ -103,6 +107,7 @@ public class MeleeEnemyBehavior : Interactable
     {
         if(health < 1)
         {
+            Destroy(attackBox.gameObject);
             Destroy(gameObject);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour
 {
     public CameraManager cam;
-    public bool isLookingAtRoom;
+    public bool isUsingPreview;
     public Vector3 camOffset;
 
     public AttackHitbox attackBox;
@@ -24,7 +24,9 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject projectile;
     public GameObject bomb;
     Rigidbody2D rb;
-    public bool isUsingPreview;
+
+    public Animator animator;
+
     public bool hasHealed;
 
     public int health;
@@ -51,10 +53,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             return;
         }
-        if (!isLookingAtRoom)
-        {
-            cam.targetPosition = transform.position + camOffset;
-        }
+        cam.targetPosition = transform.position + camOffset;
 
         movementUp = 0;
         movementDown = 0;
@@ -76,10 +75,16 @@ public class PlayerBehavior : MonoBehaviour
         {
             movementRight = speed;
         }
-       rb.velocity = new Vector3(movementRight - movementLeft, movementUp - movementDown, 0);
+        rb.velocity = new Vector3(movementRight - movementLeft, movementUp - movementDown, 0);
         if (movementRight - movementLeft != 0 || movementUp - movementDown != 0)
         {
             playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
+            animator.SetBool("Moving", true);
+            animator.SetInteger("Direction", GetFacingDirection());
+        }
+        else
+        {
+            animator.SetBool("Moving", false);
         }
         attackBox.Move(new Vector3(playerFacing.x*attackBoxOffsetMultiplier, playerFacing.y*attackBoxOffsetMultiplier, 0) + transform.position);
         CheckAttack();
@@ -207,14 +212,31 @@ public class PlayerBehavior : MonoBehaviour
 
     public void LookAtRoom(RoomEndButton room)
     {
-        isLookingAtRoom = true;
+        isUsingPreview = true;
         rb.velocity = Vector2.zero;
         cam.ZoomToTarget(room.bottomLeftCamLocation);
     }
 
     public void StopLookingAtRoom()
     {
-        isLookingAtRoom = false;
+        isUsingPreview = false;
         cam.ZoomToTarget(transform.position);
+    }
+
+    int GetFacingDirection()
+    {
+        if(playerFacing.y > Mathf.Abs(playerFacing.x))
+        {
+            return 0;
+        }else if(playerFacing.y < -Mathf.Abs(playerFacing.x))
+        {
+            return 2;
+        }else if(playerFacing.x > Mathf.Abs(playerFacing.y)){
+            return 1;
+        }
+        else
+        {
+            return 3;
+        }
     }
 }

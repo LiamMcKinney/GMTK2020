@@ -14,6 +14,8 @@ public class CameraManager : MonoBehaviour
 
     Camera cam;
 
+    AudioSource audio;
+
     public float zoomMoveMultiplier;
     public float minZoomChange;
 
@@ -73,5 +75,10 @@ public class CameraManager : MonoBehaviour
     {
         targetPosition = target;
         isZooming = true;
+    }
+
+    public void PlayClip(AudioClip clip)
+    {
+        audio.PlayOneShot(clip);
     }
 }
