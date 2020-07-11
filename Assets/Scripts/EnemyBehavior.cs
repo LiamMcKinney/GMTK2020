@@ -6,8 +6,9 @@ public class MeleeEnemyBehavior : Interactable
 {
     public float speed;
     public PlayerBehavior player;
-    public Collider2D attackBox;
+    Collider2D attackBox;
     int attackCounter;
+    public GameObject attackHitbox;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +17,7 @@ public class MeleeEnemyBehavior : Interactable
             speed = .01f;
         }
         attackCounter = 500;
+        attackBox = Instantiate(attackHitbox).GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -42,6 +44,7 @@ public class MeleeEnemyBehavior : Interactable
             yMotion = -speed;
         }
         transform.position = new Vector3(xMotion, yMotion, 0) + oldPos;
+        attackBox.GetComponent<EnemyAttackHitbox>().Move(transform.position);
         attackCounter--;
         if (attackCounter < 1)
         {
@@ -77,6 +80,12 @@ public class MeleeEnemyBehavior : Interactable
     }
 
     void TryAttack() {
-
+        foreach(Collider2D coll in Collisions())
+        {
+            if (coll.GetComponent<PlayerBehavior>() != null)
+            {
+                coll.GetComponent<PlayerBehavior>().OnHit();
+            }
+        }
     }
 }
