@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6933631207860079529}
   - component: {fileID: 6933631207860079530}
   - component: {fileID: 7344936071260053155}
+  - component: {fileID: 8167395101263324673}
   m_Layer: 0
   m_Name: Broken Machine
   m_TagString: Untagged
@@ -95,3 +96,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
+--- !u!61 &8167395101263324673
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6933631207860079532}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3, y: 2.8}
+    newSize: {x: 2.3, y: 2.8}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.3, y: 2.8}
+  m_EdgeRadius: 0

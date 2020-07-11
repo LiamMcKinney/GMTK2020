@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7783965439956584782}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.051357, y: -2.0182319, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0, g: 0.71322346, b: 1, a: 1}
   m_FlipX: 0
@@ -118,10 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRepaired: 0
-  speed: 0
   player: {fileID: 0}
+  speed: 0
   projectile: {fileID: 1437329748170198564, guid: 2f948b8fa89df0449a3a4bd417f471fb,
     type: 3}
+  health: 0
 --- !u!61 &4314806568650187929
 BoxCollider2D:
   m_ObjectHideFlags: 0
