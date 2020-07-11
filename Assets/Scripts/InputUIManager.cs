@@ -22,9 +22,12 @@ public class InputUIManager : MonoBehaviour
         
     }
 
-    public void OnChangeControl(string controlIndex)
+    public void LockControls()
     {
-
+        foreach(ControlSlot slot in slotPositions)
+        {
+            slot.button.Disable();
+        }
     }
 
     public void Hi(string hello)

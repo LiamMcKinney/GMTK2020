@@ -8,6 +8,9 @@ public class Keybind : MonoBehaviour
 {
     BoxCollider2D coll;
     bool dragging;
+    bool disabled;
+
+    public Color disabledColor;
 
     bool isConfiguring;
     KeyCode newKey;
@@ -27,7 +30,7 @@ public class Keybind : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print(GameInputManager.isConfiguringControls);
+        //print(GameInputManager.isConfiguringControls);
         if (isConfiguring)
         {
             foreach (KeyCode kcode in Enum.GetValues(typeof(KeyCode)))
@@ -45,9 +48,10 @@ public class Keybind : MonoBehaviour
             return;
         }
 
-        if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonDown(0))
+        if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonDown(0) && !disabled)
         {
             dragging = true;
+            GameInputManager.isConfiguringControls = true;
         }
         else
         {
@@ -85,8 +89,6 @@ public class Keybind : MonoBehaviour
             }
         }
 
-        print(closestSlot.actionName);
-        print(currentSlot.actionName);
         if (closestSlot.actionName.Equals(currentSlot.actionName))
         {
             isConfiguring = true;
@@ -107,6 +109,8 @@ public class Keybind : MonoBehaviour
                 GameInputManager.SetKeyMap(currentSlot.actionName, KeyCode.None);
             }
             SetSlot(closestSlot);
+
+            GameInputManager.isConfiguringControls = false;
         }
     }
 
@@ -114,5 +118,17 @@ public class Keybind : MonoBehaviour
     {
         currentSlot = slot;
         GameInputManager.SetKeyMap(slot.actionName, key);
+    }
+
+    public void Disable()
+    {
+        disabled = true;
+        GetComponent<Image>().color = disabledColor;
+    }
+
+    public void Enable()
+    {
+        disabled = false;
+        GetComponent<Image>().color = Color.white;
     }
 }
