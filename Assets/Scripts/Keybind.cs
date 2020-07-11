@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Keybind : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Keybind : MonoBehaviour
 
     bool isConfiguring;
     KeyCode newKey;
+    public Text keyText;
 
     public KeyCode key;
 
@@ -33,6 +35,7 @@ public class Keybind : MonoBehaviour
                 if (Input.GetKeyUp(kcode))
                 {
                     key = kcode;
+                    keyText.text = kcode.ToString();
                     isConfiguring = false;
                     GameInputManager.SetKeyMap(currentSlot.actionName, kcode);
                     GameInputManager.isConfiguringControls = false;
@@ -48,17 +51,14 @@ public class Keybind : MonoBehaviour
         }
         else
         {
-            if (Input.GetMouseButtonUp(0))
+            if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonUp(0))
             {
                 SnapToSlot();
                 dragging = false;
             }
         }
-        //Vector3[] test = new Vector3[4];
-        //print("this: " + coll.bounds.ToString());
-        //GetComponent<RectTransform>().GetWorldCorners(test);
-        //print("this: "+test[0]);
-        //print("mouse: " + Input.mousePosition);
+
+
         if (dragging)
         {
             transform.position = Input.mousePosition;
@@ -85,6 +85,8 @@ public class Keybind : MonoBehaviour
             }
         }
 
+        print(closestSlot.actionName);
+        print(currentSlot.actionName);
         if (closestSlot.actionName.Equals(currentSlot.actionName))
         {
             isConfiguring = true;
