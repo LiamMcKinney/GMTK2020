@@ -24,6 +24,7 @@ public class FactoryTileScript : Tile
     // As the rotation is determined by the RoadTile, the TileFlags.OverrideTransform is set for the tile.
     public override void GetTileData(Vector3Int location, ITilemap tilemap, ref TileData tileData)
     {
+        tileData.colliderType = ColliderType.Grid;
         if(HasFloorTile(tilemap, location + Vector3Int.down))
         {
             tileData.sprite = m_Sprites[0];
