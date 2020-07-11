@@ -15,7 +15,7 @@ public class EnemyProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = transform.position + direction);
+        transform.position = transform.position + direction;
         List<Collider2D> temp = new List<Collider2D>();
         int t = hitbox.OverlapCollider(new ContactFilter2D(), temp);
         foreach (Collider2D coll in temp)
