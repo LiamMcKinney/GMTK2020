@@ -72,6 +72,10 @@ public class Keybind : MonoBehaviour
         {
             otherKey.SetSlot(currentSlot);
         }
+        else
+        {
+            GameInputManager.SetKeyMap(currentSlot.actionName, KeyCode.None);
+        }
         SetSlot(closestSlot);
 
 
