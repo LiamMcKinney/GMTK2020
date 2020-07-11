@@ -31,7 +31,7 @@ public class PlayerBehavior : MonoBehaviour
         }
         if(attackBoxOffsetMultiplier == 0f)
         {
-            attackBoxOffsetMultiplier = 5f;
+            attackBoxOffsetMultiplier = .025f;
         }
     }
 
