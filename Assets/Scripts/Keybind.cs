@@ -51,7 +51,7 @@ public class Keybind : MonoBehaviour
         }
         else
         {
-            if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonUp(0))
+            if (coll.bounds.Contains(Input.mousePosition) && Input.GetMouseButtonUp(0) && dragging)
             {
                 SnapToSlot();
                 dragging = false;
