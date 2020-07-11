@@ -103,6 +103,7 @@ public class PlayerBehavior : MonoBehaviour
             if (bowCounter < 1)
             {
                 Projectile shot = Instantiate(projectile).GetComponent<Projectile>();
+                shot.Move(transform.position);
                 if (playerFacing.y > 0)
                 {
                     shot.direction = "Up";

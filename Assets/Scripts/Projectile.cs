@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = "Up";
+       // direction = "Up";
         speed = 0.03f;
         hitbox = gameObject.GetComponent<Collider2D>();
     }
@@ -44,5 +44,10 @@ public class Projectile : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public void Move(Vector3 position)
+    {
+        transform.position = position;
     }
 }
