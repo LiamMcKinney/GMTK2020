@@ -628,7 +628,7 @@ PrefabInstance:
     - target: {fileID: 1526069852, guid: b5b2973e3cabf004da9b65c27d3e9463, type: 3}
       propertyPath: button
       value: 
-      objectReference: {fileID: 1706399202}
+      objectReference: {fileID: 907612106}
     - target: {fileID: 1150274686277291332, guid: b5b2973e3cabf004da9b65c27d3e9463,
         type: 3}
       propertyPath: m_Name
@@ -1622,7 +1622,7 @@ PrefabInstance:
         type: 3}
       propertyPath: currentSlot
       value: 
-      objectReference: {fileID: 151109824}
+      objectReference: {fileID: 1022992220}
     - target: {fileID: 94530044902257025, guid: efb1936f776dee344918cf0d1d918043,
         type: 3}
       propertyPath: key
@@ -2208,7 +2208,7 @@ PrefabInstance:
         type: 3}
       propertyPath: currentSlot
       value: 
-      objectReference: {fileID: 1022992220}
+      objectReference: {fileID: 151109824}
     - target: {fileID: 94530044902257025, guid: efb1936f776dee344918cf0d1d918043,
         type: 3}
       propertyPath: key
@@ -3459,7 +3459,7 @@ PrefabInstance:
     - target: {fileID: 1526069852, guid: b5b2973e3cabf004da9b65c27d3e9463, type: 3}
       propertyPath: button
       value: 
-      objectReference: {fileID: 907612106}
+      objectReference: {fileID: 1706399202}
     - target: {fileID: 1150274686277291332, guid: b5b2973e3cabf004da9b65c27d3e9463,
         type: 3}
       propertyPath: m_Name
