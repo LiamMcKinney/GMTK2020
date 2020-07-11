@@ -72,5 +72,36 @@ public class PlayerBehavior : MonoBehaviour
             }
         }
         attackCounter--;
+        if (GameInputManager.GetKeyDown("Bow"))
+        {
+
+        }
+        if (GameInputManager.GetKeyDown("Bomb"))
+        {
+
+        }
+        if (GameInputManager.GetKey("SoftRepairTool"))
+        {
+            List<Collider2D> targets = attackBox.Collisions();
+            foreach (Collider2D coll in targets)
+            {
+                if (coll.GetComponent<Interactable>() != null)
+                {
+                    coll.GetComponent<Interactable>().OnSoftRepair();
+                }
+            }
+
+        }
+        if (GameInputManager.GetKey("HardRepairTool"))
+        {
+            List<Collider2D> targets = attackBox.Collisions();
+            foreach (Collider2D coll in targets)
+            {
+                if (coll.GetComponent<Interactable>() != null)
+                {
+                    coll.GetComponent<Interactable>().OnHardRepair();
+                }
+            }
+        }
     }
 }

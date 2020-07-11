@@ -13,31 +13,25 @@ public class EnemyBehavior : Interactable
     // Update is called once per frame
     void Update()
     {
-        //GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), )
+
     }
 
     public override void OnHit()
     {
         Destroy(gameObject);
     }
-    
-    public override void OnSoftRepair()
-    {
 
-    }
+    public override void OnSoftRepair() { }
 
-    public override void OnHardRepair()
-    {
-
-    }
+    public override void OnHardRepair() { }
 
     public override void OnBomb()
     {
-
+        Destroy(gameObject);
     }
 
     public override void OnBow()
     {
-
+        Destroy(gameObject);
     }
 }
