@@ -55,7 +55,6 @@ public class PlayerBehavior : MonoBehaviour
             return;
         }
         cam.targetPosition = transform.position + camOffset;
-
         movementUp = 0;
         movementDown = 0;
         movementRight = 0;

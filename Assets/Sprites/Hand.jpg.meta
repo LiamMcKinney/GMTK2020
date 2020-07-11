@@ -5,6 +5,9 @@ TextureImporter:
   - first:
       213: 140433255743585067
     second: Hand_0
+  - first:
+      213: 562137124616465177
+    second: Hand_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -170,7 +173,7 @@ TextureImporter:
         width: 248
         height: 248
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -178,6 +181,27 @@ TextureImporter:
       bones: []
       spriteID: b2b7f335d4be2f100800000000000000
       internalID: 140433255743585067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Hand_1
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 834
+        width: 246
+        height: 246
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91be2db8cbc1dc700800000000000000
+      internalID: 562137124616465177
       vertices: []
       indices: 
       edges: []
