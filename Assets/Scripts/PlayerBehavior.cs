@@ -19,9 +19,11 @@ public class PlayerBehavior : MonoBehaviour
     int bombCooldown;
     public GameObject projectile;
     public GameObject bomb;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         playerFacing = new Vector2(0, 0);
         if (speed == 0f)
         {
@@ -56,7 +58,7 @@ public class PlayerBehavior : MonoBehaviour
         {
             movementRight = speed;
         }
-        transform.position = new Vector3(movementRight - movementLeft, movementUp - movementDown, 0) + transform.position;
+       rb.velocity = new Vector3(movementRight - movementLeft, movementUp - movementDown, 0);
         if (movementRight - movementLeft != 0 || movementUp - movementDown != 0)
         {
             playerFacing = new Vector2(movementRight - movementLeft, movementUp - movementDown);
