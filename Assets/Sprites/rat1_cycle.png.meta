@@ -11,6 +11,12 @@ TextureImporter:
   - first:
       213: 4754171303101542360
     second: rat1_cycle_2
+  - first:
+      213: -4302139023146569778
+    second: rat1_cycle_3
+  - first:
+      213: -3958396706196605217
+    second: rat1_cycle_4
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -171,12 +177,12 @@ TextureImporter:
       name: rat1_cycle_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 32
         y: 0
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -192,12 +198,12 @@ TextureImporter:
       name: rat1_cycle_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 0
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -213,12 +219,12 @@ TextureImporter:
       name: rat1_cycle_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 0
         width: 16
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
