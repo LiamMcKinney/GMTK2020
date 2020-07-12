@@ -29,9 +29,13 @@ public class TitleScreen : MonoBehaviour
             player.sprite = sprites[index];
         }
 
-        if (Input.anyKey)
+        if (Input.GetKey(KeyCode.C))
         {
             SceneManager.LoadScene("Tutorial");
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            SceneManager.LoadScene("Endless");
         }
     }
 }
