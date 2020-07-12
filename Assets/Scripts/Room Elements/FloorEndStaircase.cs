@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 public class FloorEndStaircase : MonoBehaviour
 {
     public string nextFloor;
+
+    public List<RoomEndButton> rooms;
+    public float floorCompletion;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +25,12 @@ public class FloorEndStaircase : MonoBehaviour
     {
         if(collision.GetComponent<PlayerBehavior>() != null)
         {
+            float totalRoomCompletion = 0;
+            foreach(RoomEndButton room in rooms)
+            {
+                totalRoomCompletion += room.percentageComplete;
+            }
+            floorCompletion = totalRoomCompletion / rooms.Count;
             SceneManager.LoadScene(nextFloor);
         }
     }
