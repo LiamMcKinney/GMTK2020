@@ -123,6 +123,10 @@ MonoBehaviour:
   projectile: {fileID: 1437329748170198564, guid: 2f948b8fa89df0449a3a4bd417f471fb,
     type: 3}
   health: 0
+  knockbackSpeed: 0
+  deceleration: 0
+  knockbackMomentum: {x: 0, y: 0}
+  invincibilityFrames: 5
 --- !u!61 &4314806568650187929
 BoxCollider2D:
   m_ObjectHideFlags: 0

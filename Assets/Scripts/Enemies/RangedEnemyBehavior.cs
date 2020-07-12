@@ -14,6 +14,9 @@ public class RangedEnemyBehavior : Enemy
     public float knockbackSpeed;
     public float deceleration;
     public Vector2 knockbackMomentum;
+
+    public int invincibilityFrames;
+    int iFramesLeft = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,7 @@ public class RangedEnemyBehavior : Enemy
     // Update is called once per frame
     void Update()
     {
+        iFramesLeft--;
         if(player == null)
         {
             return;
@@ -77,8 +81,13 @@ public class RangedEnemyBehavior : Enemy
 
     public override void OnHit()
     {
-        health -= 2;
-        CheckHealth();
+        if (iFramesLeft <= 0)
+        {
+            iFramesLeft = invincibilityFrames;
+            health -= 2;
+            knockbackMomentum = (transform.position - player.transform.position).normalized * knockbackSpeed;
+            CheckHealth();
+        }
     }
 
     public override void OnSoftRepair() { }

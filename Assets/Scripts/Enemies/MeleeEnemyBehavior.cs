@@ -6,9 +6,7 @@ public class MeleeEnemyBehavior : Enemy
 {
     public float speed;
     //public PlayerBehavior player;
-    Collider2D attackBox;
     int attackCounter;
-    public GameObject attackHitbox;
     Rigidbody2D rb;
     public int health;
     Animator animator;
@@ -28,8 +26,6 @@ public class MeleeEnemyBehavior : Enemy
         {
             speed = 2f;
         }
-        attackCounter = 500;
-        attackBox = Instantiate(attackHitbox).GetComponent<Collider2D>();
         if(health == 0)
         {
             health = 5;
@@ -73,12 +69,7 @@ public class MeleeEnemyBehavior : Enemy
             yMotion = -speed;
         }
         rb.velocity = new Vector2(xMotion, yMotion);
-        attackBox.GetComponent<EnemyAttackHitbox>().Move(transform.position);
-        attackCounter--;
-        if (attackCounter < 1)
-        {
-            TryAttack();
-        }
+        TryAttack();
     }
 
     public override void OnHit()
@@ -111,7 +102,7 @@ public class MeleeEnemyBehavior : Enemy
     public List<Collider2D> Collisions()
     {
         List<Collider2D> temp = new List<Collider2D>();
-        int t = attackBox.OverlapCollider(new ContactFilter2D(), temp);
+        int t = GetComponent<BoxCollider2D>().OverlapCollider(new ContactFilter2D(), temp);
         return temp;
     }
 
@@ -131,7 +122,6 @@ public class MeleeEnemyBehavior : Enemy
     {
         if(health < 1)
         {
-            Destroy(attackBox.gameObject);
             Destroy(gameObject);
         }
     }
