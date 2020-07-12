@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class BrokenComputer : Interactable
 {
+    public SpriteRenderer icon;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         isRepaired = false;
     }
 
@@ -24,5 +27,7 @@ public class BrokenComputer : Interactable
     public override void OnSoftRepair()
     {
         isRepaired = true;
+        animator.SetTrigger("Fixed");
+        icon.enabled = false;
     }
 }
