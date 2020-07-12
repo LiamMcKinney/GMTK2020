@@ -12,6 +12,8 @@ public class RoomEndButton : MonoBehaviour
 
     public InputUIManager controlManager;
 
+    Animator animator;
+
     //the ideal camera location/size to overview the entire room.
     public Vector3 bottomLeftCamLocation;
     public Vector3 topRightCamLocation;
@@ -19,7 +21,7 @@ public class RoomEndButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -60,6 +62,8 @@ public class RoomEndButton : MonoBehaviour
         {
             door.Open();
         }
+
+        animator.SetBool("Fixed", true);
 
         controlManager.UnlockControls();
     }
