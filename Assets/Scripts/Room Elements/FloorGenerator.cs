@@ -11,11 +11,21 @@ public class FloorGenerator : MonoBehaviour
     //public Vector2 roomSize;//dimensions of a room
     Dictionary<Vector2, Room> layout;
 
-    public Tilemap grid;
+    public Tilemap floorGrid;
+    public Tilemap roomGrid;
     public Tile wallTile;
     public Tile groundTile;
 
     public List<GameObject> roomPrefabs;
+
+    public GameObject horizHallway;
+    public GameObject verticHallway;
+
+    public GameObject previewTilePrefab;
+    public GameObject doorPrefab;
+    public GameObject entrancePrefab;
+
+    public Tile floorTile;
 
     //values to control how many enemies spawn in each room.
     public float initialDifficulty;
@@ -24,10 +34,6 @@ public class FloorGenerator : MonoBehaviour
 
     Vector2 lastRoom;//coordinates of the last room generated
 
-    public GameObject enemyPrefab;
-    //public GameObject playerPrefab;
-    public GameObject exitPrefab;
-    public GameObject goldPrefab;
     public CameraManager cam;
 
     public PlayerBehavior player;
@@ -66,7 +72,10 @@ public class FloorGenerator : MonoBehaviour
     void GenerateDungeonPlan()
     {
         //generate first room
-        layout.Add(Vector2.zero, new Room(Vector2.zero));
+        GameObject firstRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count - 1)];
+        RoomEndButton server = firstRoom.GetComponentInChildren<RoomEndButton>();
+        layout.Add(Vector2.zero, new Room(new Bounds(Vector2.zero, server.roomBounds.size)));
+        //layout.Add(Vector2.zero, new Room(Vector2.zero));
 
         //generate and initialize player in the middle of the room
         //player = Instantiate(playerPrefab, new Vector2((int)(roomSize.x / 2) + .5f, (int)(roomSize.y / 2) + .5f), Quaternion.identity).GetComponent<PlayerBehavior>();
@@ -80,6 +89,10 @@ public class FloorGenerator : MonoBehaviour
             layout.Values.CopyTo(rooms, 0);
             Room nextRoom = rooms[Random.Range(0, rooms.Length)];
 
+            Vector3 center = nextRoom.boundingRect.center;
+
+            Vector3 extents = nextRoom.boundingRect.extents;
+
             //if there are no open exits in that room, reset the loop
             if (nextRoom.openExits.Count == 0)
             {
@@ -87,16 +100,32 @@ public class FloorGenerator : MonoBehaviour
             }
 
             //choose a random available exit direction, get/make the room there, and remove that exit as an option.
-            Vector2 exitDir = nextRoom.openExits[Random.Range(0, nextRoom.openExits.Count)];
+            Vector3 exitDir = nextRoom.openExits[Random.Range(0, nextRoom.openExits.Count)];
 
-            if (!layout.ContainsKey(nextRoom.position + exitDir))
+            GameObject createdRoom = roomPrefabs[Random.Range(0, roomPrefabs.Count - 1)];
+            RoomEndButton newServer = createdRoom.GetComponentInChildren<RoomEndButton>();
+
+            Bounds newBounds = new Bounds(center + (Vector3.Dot(extents, exitDir) + Vector3.Dot(newServer.roomBounds.extents, exitDir) + 6) * exitDir, newServer.roomBounds.size);
+
+            bool conflictingLocation = false;
+            foreach(Room room in rooms)
             {
-                layout.Add(nextRoom.position + exitDir, new Room(nextRoom.position + exitDir));
-                lastRoom = nextRoom.position + exitDir;
+                if (newBounds.Intersects(room.boundingRect)){
+                    conflictingLocation = true;
+                }
             }
 
+            if (conflictingLocation)
+            {
+                continue;
+            }
+
+            layout.Add(newBounds.center, new Room(newBounds));
+
+            layout[newBounds.center].prefab = createdRoom;
+
             nextRoom.openExits.Remove(exitDir);
-            layout[nextRoom.position + exitDir].openExits.Remove(-exitDir);
+            layout[newBounds.center].openExits.Remove(-exitDir);
         }
     }
 
@@ -104,57 +133,62 @@ public class FloorGenerator : MonoBehaviour
     {
         foreach (Vector2 key in layout.Keys)
         {
-            CreateRoom(key, layout[key].openExits, key.Equals(lastRoom));
+            CreateRoom(key, layout[key]);
         }
     }
 
-    void CreateRoom(Vector2 position, List<Vector2> walledExits, bool hasExit)
+    void CreateRoom(Vector2 position, Room room)
     {
-        Vector2 baseCorner = new Vector2(position.x * roomSize.x, position.y * roomSize.y);//coordinates of the bottom left corner of the room.
-        Vector2 exitCoords = new Vector2(baseCorner.x + (int)(roomSize.x / 2), baseCorner.y + (int)(roomSize.y / 2));
+        RoomEndButton server = Instantiate(room.prefab, room.boundingRect.center, Quaternion.identity).GetComponentInChildren<RoomEndButton>();
 
-        for (int i = (int)baseCorner.x; i < baseCorner.x + roomSize.x; i++)
+        server.bottomLeftCamLocation = room.boundingRect.min + new Vector3(0, 0, -10);
+        server.topRightCamLocation = room.boundingRect.max + new Vector3(0, 0, -10);
+
+        floorGrid.SetTilesBlock(GetBoundsInt(room.boundingRect), roomGrid.GetTilesBlock(GetBoundsInt(server.roomBounds)));
+
+        List<Vector2> exits = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
+
+        foreach(Vector2 exit in room.openExits)
         {
-
-            for (int j = (int)baseCorner.y; j < baseCorner.y + roomSize.y; j++)
-            {
-                grid.SetTile(new Vector3Int(i, j, 0), groundTile);
-                if (i == baseCorner.x + roomSize.x - 1)
-                {
-                    grid.SetTile(new Vector3Int((int)baseCorner.x, j, 0), (j == exitCoords.y && !walledExits.Contains(Vector2.left)) ? groundTile : wallTile);
-                    grid.SetTile(new Vector3Int((int)(baseCorner.x + roomSize.x) - 1, j, 0), (j == exitCoords.y && !walledExits.Contains(Vector2.right)) ? groundTile : wallTile);
-                }
-            }
-
-            grid.SetTile(new Vector3Int(i, (int)baseCorner.y, 0), (i == exitCoords.x && !walledExits.Contains(Vector2.down)) ? groundTile : wallTile);
-            grid.SetTile(new Vector3Int(i, (int)(baseCorner.y + roomSize.y) - 1, 0), (i == exitCoords.x && !walledExits.Contains(Vector2.up)) ? groundTile : wallTile);
+            exits.Remove(exit);
         }
 
-        //don't spawn enemies in the starting room.
-        if (position != Vector2.zero)
+        foreach(Vector3 exit in exits)
         {
-            //calculate the number of enemies to spawn in the room based on distance from the start.
-            int numEnemies = (int)(initialDifficulty + position.magnitude * difficultyScaling);
+            CreateHallway(room.boundingRect.center + (Vector3.Dot(room.boundingRect.extents, exit) + 3) * exit, server, -exit * 2);
+        }
+    }
 
-            for (int i = 0; i < numEnemies; i++)
-            {
-                //generate the enemy at a random position in the room.
-                Vector2 enemyPosition = baseCorner + new Vector2(Random.Range(1, (int)roomSize.x - 2), Random.Range(1, (int)roomSize.y - 2)) + new Vector2(.5f, .5f);
-            }
+    void CreateHallway(Vector3 center, RoomEndButton server, Vector3 doorOffset)
+    {
+        //create floor tiles for the hallway
+        for(int i = -3; i < 3; i++)
+        {
+            floorGrid.SetTile(new Vector3Int((int)center.x + i, (int)center.y - 1, (int) center.z), floorTile);
+            floorGrid.SetTile(new Vector3Int((int)center.x + i, (int)center.y, (int)center.z), floorTile);
+
+            floorGrid.SetTile(new Vector3Int((int)center.x - 1, (int)center.y + i, (int)center.z), floorTile);
+            floorGrid.SetTile(new Vector3Int((int)center.x, (int)center.y + i, (int)center.z), floorTile);
         }
 
-        //if it's a dead end, add a coin as a reward.
-        if (walledExits.Count == 3)
-        {
-            Vector2 goldPosition = baseCorner + new Vector2(Random.Range(1, (int)roomSize.x - 2), Random.Range(1, (int)roomSize.y - 2)) + new Vector2(.5f, .5f);
+        RoomPreviewTile previewTile = Instantiate(previewTilePrefab, center + (doorOffset / 4) + (3f/4f)*new Vector3(doorOffset.y, doorOffset.x), Quaternion.identity).GetComponent<RoomPreviewTile>();
 
-            Instantiate(goldPrefab, goldPosition, Quaternion.identity);
-        }
+        previewTile.room = server;
+        previewTile.speed = .02f;
 
-        if (hasExit)
-        {
-            Instantiate(exitPrefab, baseCorner + new Vector2(Random.Range(1, (int)roomSize.x - 2), Random.Range(1, (int)roomSize.y - 2)) + new Vector2(.5f, .5f), Quaternion.identity);
-        }
+        Door door = Instantiate(doorPrefab, center + doorOffset, Quaternion.identity).GetComponent<Door>();
+
+        door.room = server;
+        server.doors.Add(door);
+
+        RoomEntrance entrance = Instantiate(entrancePrefab, center + doorOffset * 2, Quaternion.identity).GetComponent<RoomEntrance>();
+        entrance.centralComputer = server;
+        server.entrances.Add(entrance);
+    }
+
+    BoundsInt GetBoundsInt(Bounds bounds)
+    {
+        return new BoundsInt((int)bounds.min.x, (int)bounds.min.y, (int)bounds.min.z, (int)bounds.size.x, (int)bounds.size.y, (int)bounds.size.z);
     }
 
     class Room

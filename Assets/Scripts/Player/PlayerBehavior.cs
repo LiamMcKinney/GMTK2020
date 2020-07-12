@@ -33,7 +33,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public Animator animator;
 
-    public bool hasHealed;
+    public bool blocking;
 
     public int health;
 
@@ -48,7 +48,6 @@ public class PlayerBehavior : MonoBehaviour
         {
             speed = 0.015f;
         }
-        hasHealed = false;
     }
 
     // Update is called once per frame
@@ -66,6 +65,16 @@ public class PlayerBehavior : MonoBehaviour
         if (GameInputManager.isConfiguringControls || isUsingPreview)
         {
             return;
+        }
+
+        if (GameInputManager.GetKey("Block"))
+        {
+            blocking = true;
+            return;
+        }
+        else
+        {
+            blocking = false;
         }
         cam.targetPosition = transform.position + camOffset;
         movementUp = 0;
@@ -126,11 +135,7 @@ public class PlayerBehavior : MonoBehaviour
         bowCounter--;
         attackCooldown--;
         attackCounter--;
-        if (GameInputManager.GetKey("Block") && !hasHealed)
-        {
-            health++;
-            hasHealed = true;
-        }
+        
     }
 
     void CheckAttack()
@@ -248,7 +253,7 @@ public class PlayerBehavior : MonoBehaviour
 
     public void OnHit()
     {
-        if (iFramesLeft <= 0)
+        if (iFramesLeft <= 0 && !blocking)
         {
             iFramesLeft = invincibilityFrames;
             health--;
