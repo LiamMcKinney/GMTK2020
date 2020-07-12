@@ -68899,6 +68899,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8573b66b4f89d274c8b39c6ee1260981, type: 3}
+--- !u!1 &1806412322
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1806412324}
+  - component: {fileID: 1806412323}
+  m_Layer: 0
+  m_Name: WinScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1806412323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806412322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3bf2682a19c2c64387f93b0c56b849d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialCompletion: 0
+  floor1Completion: 0
+  floor2Completion: 0
+  stairs: {fileID: 2672196095104140453}
+--- !u!4 &1806412324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806412322}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 49.05, y: -11.19, z: 0}
+  m_LocalScale: {x: 1000, y: 1000, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 54
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1807100768
 GameObject:
   m_ObjectHideFlags: 0
@@ -69906,5 +69953,47 @@ PrefabInstance:
       propertyPath: m_Name
       value: FloorEndStairs
       objectReference: {fileID: 0}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: rooms.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: winScreen
+      value: 
+      objectReference: {fileID: 1806412323}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: rooms.Array.data[0]
+      value: 
+      objectReference: {fileID: 437216813}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: rooms.Array.data[1]
+      value: 
+      objectReference: {fileID: 489895728}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: rooms.Array.data[2]
+      value: 
+      objectReference: {fileID: 140448674}
+    - target: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+        type: 3}
+      propertyPath: rooms.Array.data[3]
+      value: 
+      objectReference: {fileID: 1899253624}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ad09491b6fe47d4db036a51adfbdf7e, type: 3}
+--- !u!114 &2672196095104140453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2672196093919111918, guid: 9ad09491b6fe47d4db036a51adfbdf7e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2672196095104140452}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41aff89ac8603d648ad4871da9d5ff20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
