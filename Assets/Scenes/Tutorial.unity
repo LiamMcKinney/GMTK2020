@@ -275,12 +275,12 @@ PrefabInstance:
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7783965439956584782, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
@@ -4191,12 +4191,12 @@ PrefabInstance:
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7783965439956584782, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
@@ -68301,12 +68301,12 @@ PrefabInstance:
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7783965439956584782, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
@@ -69157,12 +69157,12 @@ PrefabInstance:
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1446882045359211897, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 7
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7783965439956584782, guid: 4f2af4b132ecf3a46a5f47767e08f38f,
         type: 3}

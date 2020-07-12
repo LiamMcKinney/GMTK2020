@@ -15,11 +15,14 @@ public class RangedEnemyBehavior : Enemy
     public float deceleration;
     public Vector2 knockbackMomentum;
 
+    public Animator animator;
+
     public int invincibilityFrames;
     int iFramesLeft = 0;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         if (speed == 0)
         {
@@ -71,6 +74,7 @@ public class RangedEnemyBehavior : Enemy
         shootTimer--;
         if (shootTimer < 1)
         {
+            animator.SetTrigger("Shoot");
             EnemyProjectile shot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyProjectile>();
             shot.creator = this;
             //shot.Move(transform.position - new Vector3(xMotion*20, yMotion*20, 0));
