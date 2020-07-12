@@ -253,6 +253,7 @@ public class PlayerBehavior : MonoBehaviour
             iFramesLeft = invincibilityFrames;
             health--;
             cam.Shake();
+            cam.FlashRed();
             cam.PlayClip(hurtNoises[0]);
         }
     }

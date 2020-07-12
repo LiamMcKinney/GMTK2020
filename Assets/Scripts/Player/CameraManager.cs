@@ -19,6 +19,10 @@ public class CameraManager : MonoBehaviour
     public float zoomMoveMultiplier;
     public float minZoomChange;
 
+    public int totalRedFrames;
+    int redFramesLeft;
+    public SpriteRenderer redFlash;
+
     void Start()
     {
         Shaking = false;
@@ -54,6 +58,12 @@ public class CameraManager : MonoBehaviour
         {
             Shaking = false;
         }
+
+        redFramesLeft--;
+        if (redFramesLeft < 0)
+        {
+            redFlash.enabled = false;
+        }
     }
 
 
@@ -83,5 +93,12 @@ public class CameraManager : MonoBehaviour
         audio.clip = clip;
         audio.Play();
         //audio.PlayOneShot(clip);
+    }
+
+
+    public void FlashRed()
+    {
+        redFlash.enabled = true;
+        redFramesLeft = totalRedFrames;
     }
 }
