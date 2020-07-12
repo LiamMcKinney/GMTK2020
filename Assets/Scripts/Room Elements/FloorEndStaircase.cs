@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class FloorEndStaircase : MonoBehaviour
 {
-    public Scene nextFloor;
+    public string nextFloor;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class FloorEndStaircase : MonoBehaviour
     {
         if(collision.GetComponent<PlayerBehavior>() != null)
         {
-            SceneManager.LoadScene(nextFloor.name);
+            SceneManager.LoadScene(nextFloor);
         }
     }
 }

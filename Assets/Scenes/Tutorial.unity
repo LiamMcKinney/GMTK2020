@@ -1585,7 +1585,7 @@ PrefabInstance:
     - target: {fileID: 8361892834966972643, guid: 8573b66b4f89d274c8b39c6ee1260981,
         type: 3}
       propertyPath: m_RootOrder
-      value: 41
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8361892834966972643, guid: 8573b66b4f89d274c8b39c6ee1260981,
         type: 3}
@@ -3103,15 +3103,20 @@ PrefabInstance:
       propertyPath: doors.Array.data[1]
       value: 
       objectReference: {fileID: 457715507}
+    - target: {fileID: 1532069231961181202, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1532069231961181204, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.952862
+      value: 18.07
       objectReference: {fileID: 0}
     - target: {fileID: 1532069231961181204, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -40.45704
+      value: -40.48
       objectReference: {fileID: 0}
     - target: {fileID: 1532069231961181204, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
         type: 3}
@@ -3157,6 +3162,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532069231961181204, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1532069231961181204, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1532069231961181679, guid: 0f45a84588a7a0b4b9d8f7398d31f451,
         type: 3}
@@ -3917,6 +3932,7 @@ MonoBehaviour:
     type: 3}
   bomb: {fileID: 4423977445102255888, guid: f7d581354b2f2d144b3d2ea0634c0d91, type: 3}
   bowKnockback: 0.2
+  invincibilityFrames: 0
   initialBombSpeed: 10
   deceleration: 0.1
   explosionMomentum: {x: 0, y: 0}
@@ -66486,7 +66502,7 @@ PrefabInstance:
     - target: {fileID: 8361892834966972643, guid: 8573b66b4f89d274c8b39c6ee1260981,
         type: 3}
       propertyPath: m_RootOrder
-      value: 43
+      value: 42
       objectReference: {fileID: 0}
     - target: {fileID: 8361892834966972643, guid: 8573b66b4f89d274c8b39c6ee1260981,
         type: 3}
@@ -66771,7 +66787,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3, y: 2.8}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 2.3, y: 2.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -67082,8 +67098,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41aff89ac8603d648ad4871da9d5ff20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextFloor:
-    m_Handle: 0
+  nextFloor: Rooms
 --- !u!212 &1323462219
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -67232,7 +67247,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352938635
 GameObject:
@@ -68866,7 +68881,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1848182334
 GameObject:

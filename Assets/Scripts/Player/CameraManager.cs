@@ -23,6 +23,7 @@ public class CameraManager : MonoBehaviour
     {
         Shaking = false;
         cam = GetComponent<Camera>();
+        audio = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -79,6 +80,8 @@ public class CameraManager : MonoBehaviour
 
     public void PlayClip(AudioClip clip)
     {
-        audio.PlayOneShot(clip);
+        audio.clip = clip;
+        audio.Play();
+        //audio.PlayOneShot(clip);
     }
 }

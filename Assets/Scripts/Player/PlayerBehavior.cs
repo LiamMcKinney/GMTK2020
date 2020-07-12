@@ -36,6 +36,9 @@ public class PlayerBehavior : MonoBehaviour
     public bool hasHealed;
 
     public int health;
+
+    public List<AudioClip> hurtNoises;
+    public List<AudioClip> hitNoises;
     // Start is called before the first frame update
     void Start()
     {
@@ -149,6 +152,7 @@ public class PlayerBehavior : MonoBehaviour
                 if (coll.GetComponent<Interactable>() != null)
                 {
                     coll.GetComponent<Interactable>().OnHit();
+                    cam.PlayClip(hitNoises[0]);
                 }
             }
         }
@@ -249,6 +253,7 @@ public class PlayerBehavior : MonoBehaviour
             iFramesLeft = invincibilityFrames;
             health--;
             cam.Shake();
+            cam.PlayClip(hurtNoises[0]);
         }
     }
 
