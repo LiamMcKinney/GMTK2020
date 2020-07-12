@@ -11,9 +11,11 @@ public class MeleeEnemyBehavior : Enemy
     public GameObject attackHitbox;
     Rigidbody2D rb;
     public int health;
+    Animator animator;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         if(speed == 0)
         {
@@ -97,6 +99,7 @@ public class MeleeEnemyBehavior : Enemy
         {
             if (coll.GetComponent<PlayerBehavior>() != null)
             {
+                animator.SetTrigger("Attack");
                 coll.GetComponent<PlayerBehavior>().OnHit();
                 attackCounter = 200;
             }
