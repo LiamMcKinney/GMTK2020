@@ -6,6 +6,7 @@ public class EnemyProjectile : MonoBehaviour
 {
     Collider2D hitbox;
     public Vector3 direction;
+    public Enemy creator;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +29,17 @@ public class EnemyProjectile : MonoBehaviour
             }
             if (coll.GetComponent<Interactable>() != null)
             {
+                if(coll.GetComponent<Interactable>() == creator)
+                {
+                    continue;
+                }
                 coll.GetComponent<Interactable>().OnBow();
                 Destroy(gameObject);
                 break;
+            }
+            if (coll.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                Destroy(gameObject);
             }
         }
     }

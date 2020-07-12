@@ -43,6 +43,10 @@ public class Projectile : MonoBehaviour
                 Destroy(gameObject);
                 break;
             }
+            if (coll.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                Destroy(gameObject);
+            }
         }
     }
 

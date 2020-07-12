@@ -9,9 +9,11 @@ public class RangedEnemyBehavior : Enemy
     int shootTimer;
     public GameObject projectile;
     public int health;
+    Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         if (speed == 0)
         {
             speed = .01f;
@@ -50,12 +52,13 @@ public class RangedEnemyBehavior : Enemy
         {
             yMotion = speed;
         }
-        transform.position = new Vector3(xMotion, yMotion, 0) + oldPos;
+        rb.velocity = new Vector3(xMotion, yMotion, 0);
         shootTimer--;
         if (shootTimer < 1)
         {
-            EnemyProjectile shot = Instantiate(projectile).GetComponent<EnemyProjectile>();
-            shot.Move(transform.position - new Vector3(xMotion*20, yMotion*20, 0));
+            EnemyProjectile shot = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<EnemyProjectile>();
+            shot.creator = this;
+            //shot.Move(transform.position - new Vector3(xMotion*20, yMotion*20, 0));
             shot.direction = (target - transform.position).normalized * .03f;
             shootTimer = 300;
         }

@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8834746872443648920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRepaired: 0
   player: {fileID: 0}
-  speed: 0
+  speed: 2.5
   projectile: {fileID: 1437329748170198564, guid: 2f948b8fa89df0449a3a4bd417f471fb,
     type: 3}
   health: 0
