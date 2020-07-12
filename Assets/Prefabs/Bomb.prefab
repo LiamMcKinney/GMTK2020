@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4423977445102255888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.29708868, y: 0.13736267, z: -1.3625488}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.10065861, g: 0.5471698, b: 0.28508568, a: 1}
   m_FlipX: 0
@@ -107,7 +107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.18, y: 0.18}
   m_EdgeRadius: 0
 --- !u!114 &4423977445102255889
 MonoBehaviour:
@@ -123,3 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detonationTimer: 0
   blastZone: {fileID: 4423977445102255902}
+  blastSize: {x: 3, y: 3}
+  explosionSprite: {fileID: 140433255743585067, guid: 5955fd386afd4cf41823d6d3cff03580,
+    type: 3}

@@ -1273,15 +1273,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0021528525
+    x: 0
     y: 0
-    width: 0.9946178
+    width: 1
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.4375
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1293,7 +1293,7 @@ Camera:
   m_HDR: 1
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 1
+  m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -3721,6 +3721,9 @@ MonoBehaviour:
     type: 3}
   bomb: {fileID: 4423977445102255888, guid: f7d581354b2f2d144b3d2ea0634c0d91, type: 3}
   bowKnockback: 0.2
+  initialBombSpeed: 6
+  deceleration: 0.5
+  explosionMomentum: {x: 0, y: 0}
   animator: {fileID: 734111064}
   hasHealed: 0
   health: 0
@@ -4000,7 +4003,7 @@ GameObject:
   - component: {fileID: 831094465}
   - component: {fileID: 831094464}
   - component: {fileID: 831094463}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}

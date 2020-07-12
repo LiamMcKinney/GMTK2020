@@ -25,6 +25,10 @@ public class PlayerBehavior : MonoBehaviour
     Rigidbody2D rb;
     public float bowKnockback;
 
+    public float initialBombSpeed;
+    public float deceleration;
+    public Vector2 explosionMomentum;
+
     public Animator animator;
 
     public bool hasHealed;
@@ -45,6 +49,14 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(explosionMomentum != Vector2.zero)
+        {
+            rb.velocity = explosionMomentum;
+            cam.targetPosition = transform.position + camOffset;
+
+            explosionMomentum = Vector2.MoveTowards(explosionMomentum, Vector2.zero, deceleration);
+            return;
+        }
         if (GameInputManager.isConfiguringControls || isUsingPreview)
         {
             return;
@@ -175,7 +187,23 @@ public class PlayerBehavior : MonoBehaviour
             if (bombCooldown < 1)
             {
                 Bomb boom = Instantiate(bomb).GetComponent<Bomb>();
-                boom.Move(transform.position);
+                Vector3 offset = Vector3.zero;
+                switch (GetFacingDirection())
+                {
+                    case 0:
+                        offset = Vector3.up;
+                        break;
+                    case 1:
+                        offset = Vector3.right;
+                        break;
+                    case 2:
+                        offset = Vector3.down;
+                        break;
+                    case 3:
+                        offset = Vector3.left;
+                        break;
+                }
+                boom.Move(offset + transform.position + new Vector3(0, -0.5f, 0));
                 bombCooldown = 100;
             }
         }
@@ -251,5 +279,11 @@ public class PlayerBehavior : MonoBehaviour
         {
             return 3;
         }
+    }
+
+    public void BlowUp(Vector3 source)
+    {
+        print("boom");
+        explosionMomentum = (transform.position - source).normalized * initialBombSpeed;
     }
 }

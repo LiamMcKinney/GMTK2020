@@ -5,7 +5,9 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
     public int detonationTimer;
-    public Collider2D blastZone;
+    public BoxCollider2D blastZone;
+    public Vector2 blastSize;
+    public Sprite explosionSprite;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +18,12 @@ public class Bomb : MonoBehaviour
     void Update()
     {
         detonationTimer--;
-        if (detonationTimer < 1)
+        if (detonationTimer == 1)
         {
+            GetComponent<SpriteRenderer>().sprite = explosionSprite;
+            blastZone.isTrigger = true;
+            blastZone.size = blastSize;
+        }else if(detonationTimer <= 0) { 
             List<Collider2D> temp = new List<Collider2D>();
             int t = blastZone.OverlapCollider(new ContactFilter2D(), temp);
             foreach(Collider2D coll in temp)
@@ -25,7 +31,11 @@ public class Bomb : MonoBehaviour
                 if(coll.GetComponent<Interactable>() != null)
                 {
                     coll.GetComponent<Interactable>().OnBomb();
+                }else if(coll.GetComponent<PlayerBehavior>() != null)
+                {
+                    coll.GetComponent<PlayerBehavior>().BlowUp(transform.position);
                 }
+
             }
             Destroy(gameObject);
         }
