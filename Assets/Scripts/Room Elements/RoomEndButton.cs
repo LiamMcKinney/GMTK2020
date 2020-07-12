@@ -14,6 +14,7 @@ public class RoomEndButton : MonoBehaviour
 
     Animator animator;
 
+    public float percentageComplete;
     //the ideal camera location/size to overview the entire room.
     public Vector3 bottomLeftCamLocation;
     public Vector3 topRightCamLocation;
@@ -53,10 +54,18 @@ public class RoomEndButton : MonoBehaviour
     void CompleteRoom()
     {
         print("closing");
+        int completionCounter = 0;
+        int totalItems = roomElements.Count;
         foreach(Interactable i in roomElements)
         {
+            if (i.isRepaired)
+            {
+                completionCounter++;
+            }
             Destroy(i);
         }
+
+        percentageComplete = completionCounter / totalItems;
 
         foreach(Door door in doors)
         {
