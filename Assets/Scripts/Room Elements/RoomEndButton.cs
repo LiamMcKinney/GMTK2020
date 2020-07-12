@@ -12,6 +12,8 @@ public class RoomEndButton : MonoBehaviour
 
     public InputUIManager controlManager;
 
+    public Bounds roomBounds;
+
     Animator animator;
 
     public float percentageComplete;

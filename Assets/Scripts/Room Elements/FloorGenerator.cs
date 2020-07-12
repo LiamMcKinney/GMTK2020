@@ -8,12 +8,14 @@ public class FloorGenerator : MonoBehaviour
 {
     public float dungeonSize;
     public float sizeIncreasePerFloor;
-    public Vector2 roomSize;//dimensions of a room
+    //public Vector2 roomSize;//dimensions of a room
     Dictionary<Vector2, Room> layout;
 
     public Tilemap grid;
     public Tile wallTile;
     public Tile groundTile;
+
+    public List<GameObject> roomPrefabs;
 
     //values to control how many enemies spawn in each room.
     public float initialDifficulty;
@@ -38,33 +40,9 @@ public class FloorGenerator : MonoBehaviour
     public Text totalGoldText;
     int floorNumber = 0;
 
-    private static FloorGenerator instance;
-
     // Use this for initialization
     void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            instance.grid = grid;
-
-
-            instance.GenerateMap();
-
-            Destroy(player.gameObject);
-            Destroy(cam.gameObject);
-            Destroy(ui.gameObject);
-            Destroy(gameObject);
-            return;
-        }
-
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(ui.gameObject);
-        DontDestroyOnLoad(player.gameObject);
-        DontDestroyOnLoad(cam);
 
         GenerateMap();
     }
@@ -92,7 +70,7 @@ public class FloorGenerator : MonoBehaviour
 
         //generate and initialize player in the middle of the room
         //player = Instantiate(playerPrefab, new Vector2((int)(roomSize.x / 2) + .5f, (int)(roomSize.y / 2) + .5f), Quaternion.identity).GetComponent<PlayerBehavior>();
-        player.transform.position = new Vector2((int)(roomSize.x / 2) + .5f, (int)(roomSize.y / 2) + .5f);
+        //player.transform.position = new Vector2((int)(roomSize.x / 2) + .5f, (int)(roomSize.y / 2) + .5f);
 
 
         while (layout.Count < dungeonSize)
@@ -183,10 +161,12 @@ public class FloorGenerator : MonoBehaviour
     {
         public List<Vector2> openExits = new List<Vector2>(new Vector2[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right });
         public Vector2 position;
+        public Bounds boundingRect;
+        public GameObject prefab;
 
-        public Room(Vector2 location)
+        public Room(Bounds bounds)
         {
-            position = location;
+            boundingRect = bounds;
         }
     }
 
