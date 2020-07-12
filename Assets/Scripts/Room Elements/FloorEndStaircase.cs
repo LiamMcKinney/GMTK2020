@@ -9,6 +9,7 @@ public class FloorEndStaircase : MonoBehaviour
 
     public List<RoomEndButton> rooms;
     public float floorCompletion;
+    public WinScreen winScreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class FloorEndStaircase : MonoBehaviour
                 totalRoomCompletion += room.percentageComplete;
             }
             floorCompletion = totalRoomCompletion / rooms.Count;
+            winScreen.InputScore(floorCompletion);
             SceneManager.LoadScene(nextFloor);
         }
     }
