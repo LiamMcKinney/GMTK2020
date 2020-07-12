@@ -23,20 +23,24 @@ public class Bomb : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = explosionSprite;
             blastZone.isTrigger = true;
             blastZone.size = blastSize;
-        }else if(detonationTimer <= 0) { 
+        }
+        else if (detonationTimer == 0)
+        {
             List<Collider2D> temp = new List<Collider2D>();
             int t = blastZone.OverlapCollider(new ContactFilter2D(), temp);
-            foreach(Collider2D coll in temp)
+            foreach (Collider2D coll in temp)
             {
-                if(coll.GetComponent<Interactable>() != null)
+                if (coll.GetComponent<Interactable>() != null)
                 {
                     coll.GetComponent<Interactable>().OnBomb();
-                }else if(coll.GetComponent<PlayerBehavior>() != null)
+                }
+                else if (coll.GetComponent<PlayerBehavior>() != null)
                 {
                     coll.GetComponent<PlayerBehavior>().BlowUp(transform.position);
                 }
 
             }
+        }else if(detonationTimer == -5) { 
             Destroy(gameObject);
         }
     }

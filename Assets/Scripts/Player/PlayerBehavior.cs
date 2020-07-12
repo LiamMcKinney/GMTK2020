@@ -97,15 +97,19 @@ public class PlayerBehavior : MonoBehaviour
         {
             case 0:
                 attackBox.Move(new Vector3(0, 0.8f, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                attackBox.transform.eulerAngles = new Vector3(0, 0, 0);
                 break;
             case 1:
                 attackBox.Move(new Vector3(0.8f, 0, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                attackBox.transform.eulerAngles = new Vector3(0, 0, 90);
                 break;
             case 2:
                 attackBox.Move(new Vector3(0, -0.8f, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                attackBox.transform.eulerAngles = new Vector3(0, 0, 180);
                 break;
             case 3:
                 attackBox.Move(new Vector3(-0.8f, 0, 0) + transform.position + new Vector3(0, -0.5f, 0));
+                attackBox.transform.eulerAngles = new Vector3(0, 0, 270);
                 break;
         }
         CheckAttack();
