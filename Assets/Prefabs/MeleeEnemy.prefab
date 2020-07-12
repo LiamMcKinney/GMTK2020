@@ -151,6 +151,10 @@ MonoBehaviour:
   attackHitbox: {fileID: 7428737197450172713, guid: bf448cd0c711df543993dd4aca0cd74b,
     type: 3}
   health: 5
+  invincibilityFrames: 5
+  knockbackSpeed: 20
+  deceleration: 0.2
+  knockbackMomentum: {x: 0, y: 0}
 --- !u!95 &-6459034670878676501
 Animator:
   serializedVersion: 3

@@ -10,6 +10,10 @@ public class RangedEnemyBehavior : Enemy
     public GameObject projectile;
     public int health;
     Rigidbody2D rb;
+
+    public float knockbackSpeed;
+    public float deceleration;
+    public Vector2 knockbackMomentum;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +34,13 @@ public class RangedEnemyBehavior : Enemy
     {
         if(player == null)
         {
+            return;
+        }
+        if (knockbackMomentum != Vector2.zero)
+        {
+            rb.velocity = knockbackMomentum;
+
+            knockbackMomentum = Vector2.MoveTowards(knockbackMomentum, Vector2.zero, deceleration);
             return;
         }
         Vector3 target = player.transform.position;

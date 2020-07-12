@@ -12,6 +12,13 @@ public class MeleeEnemyBehavior : Enemy
     Rigidbody2D rb;
     public int health;
     Animator animator;
+
+    public int invincibilityFrames;
+    int iFramesLeft = 0;
+
+    public float knockbackSpeed;
+    public float deceleration;
+    public Vector2 knockbackMomentum;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +39,17 @@ public class MeleeEnemyBehavior : Enemy
     // Update is called once per frame
     void Update()
     {
+        iFramesLeft--;
+
         if(player == null)
         {
+            return;
+        }
+        if(knockbackMomentum != Vector2.zero)
+        {
+            rb.velocity = knockbackMomentum;
+
+            knockbackMomentum = Vector2.MoveTowards(knockbackMomentum, Vector2.zero, deceleration);
             return;
         }
         Vector3 target = player.transform.position;
@@ -67,8 +83,13 @@ public class MeleeEnemyBehavior : Enemy
 
     public override void OnHit()
     {
-        health -= 2;
-        CheckHealth();
+        if (iFramesLeft <= 0)
+        {
+            iFramesLeft = invincibilityFrames;
+            health -= 2;
+            knockbackMomentum = (transform.position - player.transform.position).normalized * knockbackSpeed;
+            CheckHealth();
+        }
     }
 
     public override void OnSoftRepair() { }

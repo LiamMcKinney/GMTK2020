@@ -24,6 +24,8 @@ public class PlayerBehavior : MonoBehaviour
     public GameObject bomb;
     Rigidbody2D rb;
     public float bowKnockback;
+    public int invincibilityFrames;
+    int iFramesLeft = 0;
 
     public float initialBombSpeed;
     public float deceleration;
@@ -49,6 +51,7 @@ public class PlayerBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        iFramesLeft--;
         if(explosionMomentum != Vector2.zero)
         {
             rb.velocity = explosionMomentum;
@@ -241,8 +244,12 @@ public class PlayerBehavior : MonoBehaviour
 
     public void OnHit()
     {
-        health--;
-        cam.Shake();
+        if (iFramesLeft <= 0)
+        {
+            iFramesLeft = invincibilityFrames;
+            health--;
+            cam.Shake();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
