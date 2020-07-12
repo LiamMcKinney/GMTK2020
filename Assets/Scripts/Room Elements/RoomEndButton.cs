@@ -64,8 +64,14 @@ public class RoomEndButton : MonoBehaviour
             }
             Destroy(i);
         }
-
-        percentageComplete = completionCounter / totalItems;
+        if (totalItems != 0)
+        {
+            percentageComplete = completionCounter / totalItems;
+        }
+        else
+        {
+            percentageComplete = 1;
+        }
 
         foreach(Door door in doors)
         {
