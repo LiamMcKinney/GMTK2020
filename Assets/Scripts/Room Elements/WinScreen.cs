@@ -11,6 +11,7 @@ public class WinScreen : MonoBehaviour
 
     private static WinScreen instance;
     public FloorEndStaircase stairs;
+    public WinScreenText screen;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,14 @@ public class WinScreen : MonoBehaviour
         }
         else
         {
-            stairs.winScreen = instance;
+            if (stairs != null)
+            {
+                stairs.winScreen = instance;
+            }
+            else
+            {
+                screen.winScreen = instance;
+            }
             Destroy(gameObject);
         }
     }
